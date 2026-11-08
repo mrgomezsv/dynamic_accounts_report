@@ -174,10 +174,10 @@
                                             <t t-foreach="number_of_periods"
                                                t-as="nb">
                                                 <th style="text-align:center;">
-                                                    <t t-out="totals.get('dynamic_total_debit_' + nb, '0.00')"/>
+                                                    <t t-out="totals.get('dynamic_total_debit_' + str(nb), '0.00')"/>
                                                 </th>
                                                 <th style="text-align:center;">
-                                                    <t t-out="totals.get('dynamic_total_credit_' + nb, '0.00')"/>
+                                                    <t t-out="totals.get('dynamic_total_credit_' + str(nb), '0.00')"/>
                                                 </th>
                                             </t>
                                         </t>
