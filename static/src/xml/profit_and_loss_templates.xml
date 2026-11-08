@@ -6,21 +6,21 @@
                 <div class="filter_view_dfr pt-3 pb-5">
                     <div class="">
                         <h2 class="text-uppercase" style="padding:10px">
-                            <t t-esc="state.title"/>
+                            <t t-out="this.state.title"/>
                         </h2>
                     </div>
                     <div class="sub_container_right d-flex mx-2">
-                        <t t-if="state.filter_data">
+                        <t t-if="this.state.filter_data">
                             <div class="report_print">
                                 <button type="button"
                                         class="btn btn-primary btn-report-print mr-2"
-                                        t-on-click="print_pdf"
+                                        t-on-click="this.print_pdf"
                                         style="margin-right: 8px;">
                                     Print (PDF)
                                 </button>
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="print_xlsx"
+                                        t-on-click="this.print_xlsx"
                                         style="position: relative;">
                                     Export (XLSX)
                                 </button>
@@ -41,19 +41,19 @@
                                             <button class="report-filter-button"
                                                     t-att-data-value="'month'"
                                                     type="button"
-                                                    t-on-click="apply_date">
+                                                    t-on-click="this.apply_date">
                                                 This Month
                                             </button>
                                             <button class="report-filter-button"
                                                     t-att-data-value="'quarter'"
                                                     type="button"
-                                                    t-on-click="apply_date">
+                                                    t-on-click="this.apply_date">
                                                 This Quarter
                                             </button>
                                             <button class="report-filter-button"
                                                     t-att-data-value="'year'"
                                                     type="button"
-                                                    t-on-click="apply_date">
+                                                    t-on-click="this.apply_date">
                                                 This Year
                                             </button>
                                             <div role="separator"
@@ -61,19 +61,19 @@
                                             <button class="report-filter-button"
                                                     t-att-data-value="'last-month'"
                                                     type="button"
-                                                    t-on-click="apply_date">
+                                                    t-on-click="this.apply_date">
                                                 Last month
                                             </button>
                                             <button class="report-filter-button"
                                                     t-att-data-value="'last-quarter'"
                                                     type="button"
-                                                    t-on-click="apply_date">
+                                                    t-on-click="this.apply_date">
                                                 Last quarter
                                             </button>
                                             <button class="report-filter-button"
                                                     t-att-data-value="'last-year'"
                                                     type="button"
-                                                    t-on-click="apply_date">
+                                                    t-on-click="this.apply_date">
                                                 Last year
                                             </button>
                                             <div role="separator"
@@ -83,12 +83,11 @@
                                                 Date :
                                             </label>
                                             <div class="input-group date"
-                                                 t-ref="date_from"
                                                  data-target-input="nearest">
 
                                                 <input type="date"
                                                        id="start_date"
-                                                       t-on-change="apply_date"
+                                                       t-on-change="this.apply_date"
                                                        style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                        name="start_date"/>
                                             </div>
@@ -98,11 +97,10 @@
                                                 :
                                             </label>
                                             <div class="input-group date"
-                                                 t-ref="date_to"
                                                  data-target-input="nearest">
                                                 <input type="date"
                                                        id="end_date"
-                                                       t-on-change="apply_date"
+                                                       t-on-change="this.apply_date"
                                                        style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                        name="end_date"/>
                                             </div>
@@ -124,7 +122,7 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'no comparison'"
                                                 type="button"
-                                                t-on-click="apply_comparison">
+                                                t-on-click="this.apply_comparison">
                                             No Comparison
                                         </button>
                                         <div role="separator"
@@ -139,16 +137,16 @@
                                              data-target-input="nearest">
 
                                             <input type="number"
-                                                   t-ref="periods"
+                                                   t-ref="this.period"
                                                    min="1"
-                                                   t-on-input="onPeriodChange"
+                                                   t-on-input="this.onPeriodChange"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="previous_period"/>
                                         </div>
                                         <button class="btn btn-primary"
                                                 type="button"
                                                 style="margin-left: 19px;margin-top: 4px;"
-                                                t-on-click="applyComparisonPeriod">
+                                                t-on-click="this.applyComparisonPeriod">
                                             Apply
                                         </button>
                                         <div role="separator"
@@ -162,8 +160,8 @@
                                         <div class="input-group comparison"
                                              data-target-input="nearest">
                                             <input type="number"
-                                                   t-ref="period_year"
-                                                   t-on-input="onPeriodYearChange"
+                                                   t-ref="this.period_year"
+                                                   t-on-input="this.onPeriodYearChange"
                                                    min="1"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="period_year"/>
@@ -171,7 +169,7 @@
                                         <button class="btn btn-primary"
                                                 type="button"
                                                 style="margin-left: 19px;margin-top: 4px;"
-                                                t-on-click="applyComparisonYear">
+                                                t-on-click="this.applyComparisonYear">
                                             Apply
                                         </button>
                                     </div>
@@ -188,14 +186,14 @@
                                      name="states[]">
                                     <div role="separator"
                                          class="dropdown-divider"/>
-                                    <t t-foreach="state.filter_data['journal']"
+                                    <t t-foreach="this.state.filter_data['journal']"
                                        t-as="journal" t-key="journal_index">
                                         <span class="dropdown-item"
                                               role="menuitem"
-                                              t-on-click="apply_journal">
-                                            <span t-esc="journal.id"
+                                              t-on-click="this.apply_journal">
+                                            <span t-out="journal.id"
                                                   class="d-none"/>
-                                            <t t-esc="journal.name"/>
+                                            <t t-out="journal.name"/>
                                         </span>
                                     </t>
                                 </div>
@@ -215,14 +213,14 @@
                                      name="states[]">
                                     <div role="separator"
                                          class="dropdown-divider"/>
-                                    <t t-foreach="state.filter_data['account']"
+                                    <t t-foreach="this.state.filter_data['account']"
                                        t-as="account" t-key="account_index">
                                         <span class="dropdown-item"
                                               role="menuitem"
-                                              t-on-click="apply_account">
-                                            <span t-esc="account.id"
+                                              t-on-click="this.apply_account">
+                                            <span t-out="account.id"
                                                   class="d-none"/>
-                                            <t t-esc="account.name"/>
+                                            <t t-out="account.name"/>
                                         </span>
                                     </t>
                                 </div>
@@ -243,14 +241,14 @@
                                      name="states[]">
                                     <div role="separator"
                                          class="dropdown-divider"/>
-                                    <t t-foreach="state.filter_data['analytic']"
+                                    <t t-foreach="this.state.filter_data['analytic']"
                                        t-as="analytic" t-key="analytic_index">
                                         <span class="dropdown-item"
                                               role="menuitem"
-                                              t-on-click="apply_analytic_accounts">
-                                            <span t-esc="analytic.id"
+                                              t-on-click="this.apply_analytic_accounts">
+                                            <span t-out="analytic.id"
                                                   class="d-none"/>
-                                            <t t-esc="analytic.name"/>
+                                            <t t-out="analytic.name"/>
                                         </span>
                                     </t>
                                 </div>
@@ -266,22 +264,21 @@
                                     <div class="list-group">
                                         <button class="report-filter-button"
                                                 t-attf-value="posted"
-                                                t-ref="posted"
+                                                t-ref="this.posted"
                                                 type="button"
-                                                t-on-click="apply_entries">
+                                                t-on-click="this.apply_entries">
                                             Posted Entries
                                         </button>
                                         <button class="report-filter-button"
                                                 t-attf-value="draft"
-                                                t-ref="draft"
+                                                t-ref="this.draft"
                                                 type="button"
-                                                t-on-click="apply_entries">
+                                                t-on-click="this.apply_entries">
                                             Include Draft Entries
                                         </button>
                                         <button class="report-filter-button"
                                                 type="button"
-                                                t-ref="unfoldButton"
-                                                t-on-click="unfoldAll">
+                                                t-on-click="this.unfoldAll">
                                             Unfold All
                                         </button>
 
@@ -301,20 +298,20 @@
                                 <thead>
                                     <tr class="o_heading">
                                         <th colspan="6"/>
-                                        <t t-if="state.year">
-                                            <t t-foreach="state.year"
+                                        <t t-if="this.state.year">
+                                            <t t-foreach="this.state.year"
                                                t-as="periodData"
                                                t-key="periodData_index">
                                                 <th class="text-end">
-                                                    <t t-esc="periodData"/>
+                                                    <t t-out="periodData"/>
                                                 </th>
                                             </t>
                                         </t>
                                     </tr>
                                     <tr class="o_heading">
                                         <th colspan="6"/>
-                                        <t t-if="state.year">
-                                            <t t-foreach="state.year"
+                                        <t t-if="this.state.year">
+                                            <t t-foreach="this.state.year"
                                                t-as="periodData"
                                                t-key="periodData_index">
                                                 <th class="text-end">Balance
@@ -323,21 +320,21 @@
                                         </t>
                                     </tr>
                                 </thead>
-                                <tbody t-ref="tbody">
-                                    <t t-if="state.datas">
+                                <tbody t-ref="this.tbody">
+                                    <t t-if="this.state.datas">
                                         <tr class="gl-line">
                                             <th colspan="6">
                                                 <span class="fw-bolder">
                                                     Net Profit
                                                 </span>
                                             </th>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="total"
                                                t-key="total_index">
                                                 <th class="text-end">
                                                     <span class="fw-bolder">
                                                         <t t-if="total.total"
-                                                           t-esc="total.total.toFixed(2)"/>
+                                                           t-out="total.total.toFixed(2)"/>
                                                     </span>
                                                 </th>
                                             </t>
@@ -348,12 +345,12 @@
                                                     Income
                                                 </span>
                                             </th>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="total_income"
                                                t-key="total_income_index">
                                                 <th class="text-end">
                                                     <span class="fw-bolder">
-                                                        <t t-esc="total_income.total_income"/>
+                                                        <t t-out="total_income.total_income"/>
                                                     </span>
                                                 </th>
                                             </t>
@@ -364,17 +361,17 @@
                                                     Gross Profit
                                                 </span>
                                             </th>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                    t-as="value"
                                                    t-key="value_index">
                                                     <th class="text-end">
                                                         <span>
-                                                            <t t-esc="sumGrossProfit(value.expense_direct_cost[1], value.income[1]).toFixed(2)"/>
+                                                            <t t-out="this.sumGrossProfit(value.expense_direct_cost[1], value.income[1]).toFixed(2)"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                         </tr>
-                                        <t t-foreach="state.datas" t-as="value"
+                                        <t t-foreach="this.state.datas" t-as="value"
                                            t-key="value_index">
                                             <t t-if="value.income[1] != '0.00'">
                                                 <t t-set="income" t-value="1"/>
@@ -399,17 +396,17 @@
                                                         </a>
                                                     </div>
                                                 </th>
-                                                <t t-foreach="state.datas"
+                                                <t t-foreach="this.state.datas"
                                                    t-as="value"
                                                    t-key="value_index">
                                                     <th class="text-end">
                                                         <span>
-                                                            <t t-esc="value.income[1]"/>
+                                                            <t t-out="value.income[1]"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                             </tr>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="value"
                                                t-key="value_index">
                                                 <t t-if="value_index == 0">
@@ -420,7 +417,7 @@
                                                            t-value="income.name"/>
                                                         <t t-set="account_value"
                                                            t-value="0"/>
-                                                        <t t-foreach="state.datas"
+                                                        <t t-foreach="this.state.datas"
                                                            t-as="values"
                                                            t-key="values_index">
                                                             <t t-foreach="values.income[0]"
@@ -442,12 +439,12 @@
                                                                         <a class="dropdown-toggle"
                                                                            data-bs-toggle="dropdown">
                                                                             <span class="ms-5">
-                                                                                <t t-esc="income.name"/>
+                                                                                <t t-out="income.name"/>
                                                                             </span>
                                                                         </a>
                                                                         <span class="dropdown-menu">
                                                                             <a role="menuitem"
-                                                                               t-on-click="show_gl"
+                                                                               t-on-click="this.show_gl"
                                                                                class="show_gl">
                                                                                 General
                                                                                 Ledger
@@ -455,7 +452,7 @@
                                                                         </span>
                                                                     </span>
                                                                 </th>
-                                                                <t t-foreach="state.datas"
+                                                                <t t-foreach="this.state.datas"
                                                                    t-as="values"
                                                                    t-key="values_index">
                                                                     <t t-foreach="values.income[0]"
@@ -464,7 +461,7 @@
                                                                         <t t-if="income_name == income.name">
                                                                             <th class="text-end">
                                                                                 <span>
-                                                                                    <t t-esc="income.amount"/>
+                                                                                    <t t-out="income.amount"/>
                                                                                 </span>
                                                                             </th>
                                                                         </t>
@@ -486,7 +483,7 @@
                                                 </th>
                                             </tr>
                                         </t>
-                                        <t t-foreach="state.datas" t-as="value"
+                                        <t t-foreach="this.state.datas" t-as="value"
                                            t-key="value_index">
                                             <t t-if="value.expense_direct_cost[1] != '0.00'">
                                                 <t t-set="expense_direct_cost"
@@ -513,17 +510,17 @@
                                                         </a>
                                                     </div>
                                                 </th>
-                                                <t t-foreach="state.datas"
+                                                <t t-foreach="this.state.datas"
                                                    t-as="value"
                                                    t-key="value_index">
                                                     <th class="text-end">
                                                         <span>
-                                                            <t t-esc="value.expense_direct_cost[1]"/>
+                                                            <t t-out="value.expense_direct_cost[1]"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                             </tr>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="value"
                                                t-key="value_index">
                                                 <t t-if="value_index == 0">
@@ -534,7 +531,7 @@
                                                            t-value="income.name"/>
                                                         <t t-set="account_value"
                                                            t-value="0"/>
-                                                        <t t-foreach="state.datas"
+                                                        <t t-foreach="this.state.datas"
                                                            t-as="values"
                                                            t-key="values_index">
                                                             <t t-foreach="values.expense_direct_cost[0]"
@@ -556,12 +553,12 @@
                                                                         <a class="dropdown-toggle"
                                                                            data-bs-toggle="dropdown">
                                                                             <span class="ms-5">
-                                                                                <t t-esc="income.name"/>
+                                                                                <t t-out="income.name"/>
                                                                             </span>
                                                                         </a>
                                                                         <span class="dropdown-menu">
                                                                             <a role="menuitem"
-                                                                               t-on-click="show_gl"
+                                                                               t-on-click="this.show_gl"
                                                                                class="show_gl">
                                                                                 General
                                                                                 Ledger
@@ -569,7 +566,7 @@
                                                                         </span>
                                                                     </span>
                                                                 </th>
-                                                                <t t-foreach="state.datas"
+                                                                <t t-foreach="this.state.datas"
                                                                    t-as="values"
                                                                    t-key="values_index">
                                                                     <t t-foreach="values.expense_direct_cost[0]"
@@ -578,7 +575,7 @@
                                                                         <t t-if="income_name == income.name">
                                                                             <th class="text-end">
                                                                                 <span>
-                                                                                    <t t-esc="income.amount"/>
+                                                                                    <t t-out="income.amount"/>
                                                                                 </span>
                                                                             </th>
                                                                         </t>
@@ -599,7 +596,7 @@
                                                 </th>
                                             </tr>
                                         </t>
-                                        <t t-foreach="state.datas" t-as="value"
+                                        <t t-foreach="this.state.datas" t-as="value"
                                            t-key="value_index">
                                             <t t-if="value.income_other[1] != '0.00'">
                                                 <t t-set="income_other"
@@ -624,17 +621,17 @@
                                                         </a>
                                                     </div>
                                                 </th>
-                                                <t t-foreach="state.datas"
+                                                <t t-foreach="this.state.datas"
                                                    t-as="value"
                                                    t-key="value_index">
                                                     <th class="text-end">
                                                         <span>
-                                                            <t t-esc="value.income_other[1]"/>
+                                                            <t t-out="value.income_other[1]"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                             </tr>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="value"
                                                t-key="value_index">
                                                 <t t-if="value_index == 0">
@@ -645,7 +642,7 @@
                                                            t-value="income.name"/>
                                                         <t t-set="account_value"
                                                            t-value="0"/>
-                                                        <t t-foreach="state.datas"
+                                                        <t t-foreach="this.state.datas"
                                                            t-as="values"
                                                            t-key="values_index">
                                                             <t t-foreach="values.income_other[0]"
@@ -667,12 +664,12 @@
                                                                         <a class="dropdown-toggle"
                                                                            data-bs-toggle="dropdown">
                                                                             <span class="ms-4">
-                                                                                <t t-esc="income.name"/>
+                                                                                <t t-out="income.name"/>
                                                                             </span>
                                                                         </a>
                                                                         <span class="dropdown-menu">
                                                                             <a role="menuitem"
-                                                                               t-on-click="show_gl"
+                                                                               t-on-click="this.show_gl"
                                                                                class="show_gl">
                                                                                 General
                                                                                 Ledger
@@ -680,7 +677,7 @@
                                                                         </span>
                                                                     </span>
                                                                 </th>
-                                                                <t t-foreach="state.datas"
+                                                                <t t-foreach="this.state.datas"
                                                                    t-as="values"
                                                                    t-key="values_index">
                                                                     <t t-foreach="values.income_other[0]"
@@ -689,7 +686,7 @@
                                                                         <t t-if="income_name == income.name">
                                                                             <th class="text-end">
                                                                                 <span>
-                                                                                    <t t-esc="income.amount"/>
+                                                                                    <t t-out="income.amount"/>
                                                                                 </span>
                                                                             </th>
                                                                         </t>
@@ -716,12 +713,12 @@
                                                     Total Income
                                                 </span>
                                             </th>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="total_income"
                                                t-key="total_income_index">
                                                 <th class="text-end">
                                                     <span class="fw-bolder">
-                                                        <t t-esc="total_income.total_income"/>
+                                                        <t t-out="total_income.total_income"/>
                                                     </span>
                                                 </th>
                                             </t>
@@ -732,17 +729,17 @@
                                                     Expenses
                                                 </span>
                                             </th>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="total_expense"
                                                t-key="total_expense_index">
                                                 <th class="text-end">
                                                     <span class="fw-bolder">
-                                                        <t t-esc="total_expense.total_expense"/>
+                                                        <t t-out="total_expense.total_expense"/>
                                                     </span>
                                                 </th>
                                             </t>
                                         </tr>
-                                        <t t-foreach="state.datas" t-as="value"
+                                        <t t-foreach="this.state.datas" t-as="value"
                                            t-key="value_index">
                                             <t t-if="value.expense[1] != '0.00'">
                                                 <t t-set="expense"
@@ -767,17 +764,17 @@
                                                         </a>
                                                     </div>
                                                 </th>
-                                                <t t-foreach="state.datas"
+                                                <t t-foreach="this.state.datas"
                                                    t-as="value"
                                                    t-key="value_index">
                                                     <th class="text-end">
                                                         <span>
-                                                            <t t-esc="value.expense[1]"/>
+                                                            <t t-out="value.expense[1]"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                             </tr>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="value"
                                                t-key="value_index">
                                                 <t t-if="value_index == 0">
@@ -788,7 +785,7 @@
                                                            t-value="income.name"/>
                                                         <t t-set="account_value"
                                                            t-value="0"/>
-                                                        <t t-foreach="state.datas"
+                                                        <t t-foreach="this.state.datas"
                                                            t-as="values"
                                                            t-key="values_index">
                                                             <t t-foreach="values.expense[0]"
@@ -810,12 +807,12 @@
                                                                         <a class="dropdown-toggle"
                                                                            data-bs-toggle="dropdown">
                                                                             <span class="ms-5">
-                                                                                <t t-esc="income.name"/>
+                                                                                <t t-out="income.name"/>
                                                                             </span>
                                                                         </a>
                                                                         <span class="dropdown-menu">
                                                                             <a role="menuitem"
-                                                                               t-on-click="show_gl"
+                                                                               t-on-click="this.show_gl"
                                                                                class="show_gl">
                                                                                 General
                                                                                 Ledger
@@ -823,7 +820,7 @@
                                                                         </span>
                                                                     </span>
                                                                 </th>
-                                                                <t t-foreach="state.datas"
+                                                                <t t-foreach="this.state.datas"
                                                                    t-as="values"
                                                                    t-key="values_index">
                                                                     <t t-foreach="values.expense[0]"
@@ -832,7 +829,7 @@
                                                                         <t t-if="income_name == income.name">
                                                                             <th class="text-end">
                                                                                 <span>
-                                                                                    <t t-esc="income.amount"/>
+                                                                                    <t t-out="income.amount"/>
                                                                                 </span>
                                                                             </th>
                                                                         </t>
@@ -852,7 +849,7 @@
                                                 </th>
                                             </tr>
                                         </t>
-                                        <t t-foreach="state.datas" t-as="value"
+                                        <t t-foreach="this.state.datas" t-as="value"
                                            t-key="value_index">
                                             <t t-if="value.expense_depreciation[1] != '0.00'">
                                                 <t t-set="expense_depreciation"
@@ -877,17 +874,17 @@
                                                         </a>
                                                     </div>
                                                 </th>
-                                                <t t-foreach="state.datas"
+                                                <t t-foreach="this.state.datas"
                                                    t-as="value"
                                                    t-key="value_index">
                                                     <th class="text-end">
                                                         <span>
-                                                            <t t-esc="value.expense_depreciation[1]"/>
+                                                            <t t-out="value.expense_depreciation[1]"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                             </tr>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="value"
                                                t-key="value_index">
                                                 <t t-if="value_index == 0">
@@ -898,7 +895,7 @@
                                                            t-value="income.name"/>
                                                         <t t-set="account_value"
                                                            t-value="0"/>
-                                                        <t t-foreach="state.datas"
+                                                        <t t-foreach="this.state.datas"
                                                            t-as="values"
                                                            t-key="values_index">
                                                             <t t-foreach="values.expense_depreciation[0]"
@@ -920,12 +917,12 @@
                                                                         <a class="dropdown-toggle"
                                                                            data-bs-toggle="dropdown">
                                                                             <span class="ms-5">
-                                                                                <t t-esc="income.name"/>
+                                                                                <t t-out="income.name"/>
                                                                             </span>
                                                                         </a>
                                                                         <span class="dropdown-menu">
                                                                             <a role="menuitem"
-                                                                               t-on-click="show_gl"
+                                                                               t-on-click="this.show_gl"
                                                                                class="show_gl">
                                                                                 General
                                                                                 Ledger
@@ -933,7 +930,7 @@
                                                                         </span>
                                                                     </span>
                                                                 </th>
-                                                                <t t-foreach="state.datas"
+                                                                <t t-foreach="this.state.datas"
                                                                    t-as="values"
                                                                    t-key="values_index">
                                                                     <t t-foreach="values.expense_depreciation[0]"
@@ -942,7 +939,7 @@
                                                                         <t t-if="income_name == income.name">
                                                                             <th class="text-end">
                                                                                 <span>
-                                                                                    <t t-esc="income.amount"/>
+                                                                                    <t t-out="income.amount"/>
                                                                                 </span>
                                                                             </th>
                                                                         </t>
@@ -970,12 +967,12 @@
                                                     Expenses
                                                 </span>
                                             </th>
-                                            <t t-foreach="state.datas"
+                                            <t t-foreach="this.state.datas"
                                                t-as="total_expense"
                                                t-key="total_expense_index">
                                                 <th class="text-end">
                                                     <span class="fw-bolder">
-                                                        <t t-esc="total_expense.total_expense"/>
+                                                        <t t-out="total_expense.total_expense"/>
                                                     </span>
                                                 </th>
                                             </t>

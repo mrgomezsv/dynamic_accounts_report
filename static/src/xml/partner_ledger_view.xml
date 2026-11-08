@@ -12,7 +12,7 @@
                     <!-- Title -->
                     <div class="">
                         <h2 class="text-uppercase" style="padding:10px">
-                            <t t-esc="props.action.name"/>
+                            <t t-out="this.props.action.name"/>
                         </h2>
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px;margin-bottom: 15px;display: flex;">
@@ -21,14 +21,14 @@
                                 <!-- Print (PDF) Button -->
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="printPdf"
+                                        t-on-click="this.printPdf"
                                         style="margin-right: 8px;">
                                     Print (PDF)
                                 </button>
                                 <!-- Export (XLSX) Button -->
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="print_xlsx">
+                                        t-on-click="this.print_xlsx">
                                     Export (XLSX)
                                 </button>
                             </div>
@@ -54,21 +54,21 @@
                                             <button class="report-filter-button"
                                                     t-att-data-value="'month'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 This Month
                                             </button>
                                             <!-- This Quarter Button -->
                                             <button class="report-filter-button"
                                                     t-att-data-value="'quarter'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 This Quarter
                                             </button>
                                             <!-- This Year Button -->
                                             <button class="report-filter-button"
                                                     t-att-data-value="'year'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 This Year
                                             </button>
                                             <!-- Separator -->
@@ -78,21 +78,21 @@
                                             <button class="report-filter-button"
                                                     t-att-data-value="'last-month'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 Last month
                                             </button>
                                             <!-- Last Quarter Button -->
                                             <button class="report-filter-button"
                                                     t-att-data-value="'last-quarter'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 Last quarter
                                             </button>
                                             <!-- Last Year Button -->
                                             <button class="report-filter-button"
                                                     t-att-data-value="'last-year'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 Last year
                                             </button>
                                             <!-- Separator -->
@@ -104,12 +104,11 @@
                                                 Date :
                                             </label>
                                             <div class="input-group date"
-                                                 t-ref="date_from"
                                                  data-target-input="nearest">
 
                                                 <input type="date"
                                                        id="start_date"
-                                                       t-on-change="applyFilter"
+                                                       t-on-change="this.applyFilter"
                                                        style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                        name="start_date"/>
                                             </div>
@@ -119,10 +118,9 @@
                                                 :
                                             </label>
                                             <div class="input-group date"
-                                                 t-ref="date_to"
                                                  data-target-input="nearest">
                                                 <input type="date" id="end_date"
-                                                       t-on-change="applyFilter"
+                                                       t-on-change="this.applyFilter"
                                                        style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                        name="end_date"/>
                                             </div>
@@ -139,12 +137,12 @@
                                               title="Accounts"
                                               role="img" aria-label="Dates"/>
                                         Account Type
-                                        <t t-if="state.account">:
-                                            <t t-foreach="state.account"
+                                        <t t-if="this.state.account">:
+                                            <t t-foreach="this.state.account"
                                                t-as="account_key"
                                                t-key="account_key_index">
-                                                <t t-esc="account_key"/>
-                                                <t t-if="account_key_index != Object.keys(state.account).length - 1">
+                                                <t t-out="account_key"/>
+                                                <t t-if="account_key_index != Object.keys(this.state.account).length - 1">
                                                     ,
                                                 </t>
                                             </t>
@@ -156,14 +154,14 @@
                                             <button class="report-filter-button"
                                                     t-att-data-value="'receivable'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 Receivable
                                             </button>
                                             <!-- Payable Button -->
                                             <button class="report-filter-button"
                                                     t-att-data-value="'payable'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 Payable
                                             </button>
                                         </div>
@@ -180,12 +178,12 @@
                                               title="Partners"
                                               role="img" aria-label="Partners"/>
                                         Partners
-                                        <t t-if="state.selected_partner_rec and state.selected_partner_rec.length > 0">
+                                        <t t-if="this.state.selected_partner_rec and this.state.selected_partner_rec.length > 0">
                                             :
-                                            <t t-foreach="state.selected_partner_rec" t-as="partner_rec"
+                                            <t t-foreach="this.state.selected_partner_rec" t-as="partner_rec"
                                                t-key="partner_rec_index">
-                                                <t t-esc="partner_rec.display_name || partner_rec.name"/>
-                                                <t t-if="partner_rec_index != state.selected_partner_rec.length - 1">,
+                                                <t t-out="partner_rec.display_name || partner_rec.name"/>
+                                                <t t-if="partner_rec_index != this.state.selected_partner_rec.length - 1">,
                                                 </t>
                                             </t>
                                         </t>
@@ -198,26 +196,25 @@
                                                 <input type="text"
                                                        class="form-control form-control-sm"
                                                        placeholder="Search partners..."
-                                                       t-ref="partnerSearch"
-                                                       t-on-input="searchPartners"
+                                                       t-on-input="this.searchPartners"
                                                        style="border: 1px solid #ccc; padding: 5px; font-size: 13px;"/>
                                             </div>
                                             <!--                                        &lt;!&ndash; Selected Partners Display &ndash;&gt;-->
-                                            <t t-if="state.selected_partner_rec and state.selected_partner_rec.length > 0">
+                                            <t t-if="this.state.selected_partner_rec and this.state.selected_partner_rec.length > 0">
                                                 <div class="mb-2" style="max-height: 80px; overflow-y: auto;">
                                                     <small class="text-muted">
                                                         <strong>Selected:</strong>
                                                     </small>
                                                     <div class="mt-1">
-                                                        <t t-foreach="state.selected_partner_rec" t-as="selected"
+                                                        <t t-foreach="this.state.selected_partner_rec" t-as="selected"
                                                            t-key="selected_index">
                                                             <span class="badge bg-primary me-1 mb-1"
                                                                   style="display: inline-flex; align-items: center; font-size: 11px;">
-                                                                <t t-esc="selected.display_name || selected.name"/>
+                                                                <t t-out="selected.display_name || selected.name"/>
                                                                 <i class="fa fa-times ms-1"
                                                                    style="cursor: pointer; font-size: 10px;"
                                                                    t-att-data-partner-id="selected.id"
-                                                                   t-on-click="removePartner"/>
+                                                                   t-on-click="this.removePartner"/>
                                                             </span>
                                                         </t>
                                                     </div>
@@ -226,16 +223,16 @@
                                             </t>
                                             <!-- Partner List -->
                                             <div class="partner-list" style="max-height: 180px; overflow-y: auto;">
-                                                <t t-if="state.filtered_partners and state.filtered_partners.length > 0">
-                                                    <t t-foreach="state.filtered_partners" t-as="partner"
+                                                <t t-if="this.state.filtered_partners and this.state.filtered_partners.length > 0">
+                                                    <t t-foreach="this.state.filtered_partners" t-as="partner"
                                                        t-key="partner_index">
                                                         <button class="dropdown-item partner-item"
                                                                 type="button"
                                                                 t-att-data-partner-id="partner.id"
                                                                 t-att-data-partner-name="partner.display_name || partner.name"
-                                                                t-on-click="selectPartner"
+                                                                t-on-click="this.selectPartner"
                                                                 style="width: 100%; text-align: left; padding: 6px 10px; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                                            <t t-esc="partner.display_name || partner.name"/>
+                                                            <t t-out="partner.display_name || partner.name"/>
                                                         </button>
                                                     </t>
                                                 </t>
@@ -245,11 +242,11 @@
                                                     </div>
                                                 </t>
                                             </div>
-                                            <t t-if="state.selected_partner_rec and state.selected_partner_rec.length > 0">
+                                            <t t-if="this.state.selected_partner_rec and this.state.selected_partner_rec.length > 0">
                                                 <div role="separator" class="dropdown-divider"/>
                                                 <button class="btn btn-sm btn-danger w-100 mt-2"
                                                         type="button"
-                                                        t-on-click="clearAllPartners"
+                                                        t-on-click="this.clearAllPartners"
                                                         style="font-size: 12px; padding: 4px;">
                                                     Clear All
                                                 </button>
@@ -267,8 +264,8 @@
                                     <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
                                         <span class="fa fa-filter" title="Partner Tags" role="img" aria-label="Partner Tags"/>
                                         Partner Tags
-                                        <t t-if="state.selected_tags and state.selected_tags.length > 0">
-                                            (<t t-esc="state.selected_tags.length"/>)
+                                        <t t-if="this.state.selected_tags and this.state.selected_tags.length > 0">
+                                            (<t t-out="this.state.selected_tags.length"/>)
                                         </t>
                                     </a>
                                     <div class="dropdown-menu category-dropdown" role="menu"
@@ -279,24 +276,23 @@
                                                 <input type="text"
                                                        class="form-control form-control-sm"
                                                        placeholder="Search tags..."
-                                                       t-ref="tagSearch"
-                                                       t-on-input="searchTags"
+                                                       t-on-input="this.searchTags"
                                                        style="border: 1px solid #ccc; padding: 5px; font-size: 13px;"/>
                                             </div>
 
                                             <!-- Selected Tags Display -->
-                                            <t t-if="state.selected_tags and state.selected_tags.length > 0">
+                                            <t t-if="this.state.selected_tags and this.state.selected_tags.length > 0">
                                                 <div class="mb-2" style="max-height: 80px; overflow-y: auto;">
                                                     <small class="text-muted"><strong>Selected:</strong></small>
                                                     <div class="mt-1">
-                                                        <t t-foreach="state.selected_tags" t-as="tag" t-key="tag_index">
+                                                        <t t-foreach="this.state.selected_tags" t-as="tag" t-key="tag_index">
                                                             <span class="badge bg-info me-1 mb-1"
                                                                   style="display: inline-flex; align-items: center; font-size: 11px;">
-                                                                <t t-esc="tag.name"/>
+                                                                <t t-out="tag.name"/>
                                                                 <i class="fa fa-times ms-1"
                                                                    style="cursor: pointer; font-size: 10px;"
                                                                    t-att-data-tag-id="tag.id"
-                                                                   t-on-click="removeTag"/>
+                                                                   t-on-click="this.removeTag"/>
                                                             </span>
                                                         </t>
                                                     </div>
@@ -306,15 +302,15 @@
 
                                             <!-- Tags List -->
                                             <div class="tag-list" style="max-height: 180px; overflow-y: auto;">
-                                                <t t-if="state.filtered_tags and state.filtered_tags.length > 0">
-                                                    <t t-foreach="state.filtered_tags" t-as="tag" t-key="tag_index">
+                                                <t t-if="this.state.filtered_tags and this.state.filtered_tags.length > 0">
+                                                    <t t-foreach="this.state.filtered_tags" t-as="tag" t-key="tag_index">
                                                         <button class="dropdown-item tag-item"
                                                                 type="button"
                                                                 t-att-data-tag-id="tag.id"
                                                                 t-att-data-tag-name="tag.name"
-                                                                t-on-click="selectTag"
+                                                                t-on-click="this.selectTag"
                                                                 style="width: 100%; text-align: left; padding: 6px 10px; font-size: 13px;">
-                                                            <t t-esc="tag.name"/>
+                                                            <t t-out="tag.name"/>
                                                         </button>
                                                     </t>
                                                 </t>
@@ -324,11 +320,11 @@
                                             </div>
 
                                             <!-- Clear All Button -->
-                                            <t t-if="state.selected_tags and state.selected_tags.length > 0">
+                                            <t t-if="this.state.selected_tags and this.state.selected_tags.length > 0">
                                                 <div role="separator" class="dropdown-divider"/>
                                                 <button class="btn btn-sm btn-danger w-100 mt-2"
                                                         type="button"
-                                                        t-on-click="clearAllTags"
+                                                        t-on-click="this.clearAllTags"
                                                         style="font-size: 12px; padding: 4px;">
                                                     Clear All
                                                 </button>
@@ -344,8 +340,8 @@
                                     <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
                                         <span class="fa fa-book" title="Accounts" role="img" aria-label="Accounts"/>
                                         Accounts
-                                        <t t-if="state.selected_accounts and state.selected_accounts.length > 0">
-                                            (<t t-esc="state.selected_accounts.length"/>)
+                                        <t t-if="this.state.selected_accounts and this.state.selected_accounts.length > 0">
+                                            (<t t-out="this.state.selected_accounts.length"/>)
                                         </t>
                                     </a>
                                     <div class="dropdown-menu account-dropdown" role="menu"
@@ -356,24 +352,23 @@
                                                 <input type="text"
                                                        class="form-control form-control-sm"
                                                        placeholder="Search accounts..."
-                                                       t-ref="accountSearch"
-                                                       t-on-input="searchAccounts"
+                                                       t-on-input="this.searchAccounts"
                                                        style="border: 1px solid #ccc; padding: 5px; font-size: 13px;"/>
                                             </div>
 
                                             <!-- Selected Accounts Display -->
-                                            <t t-if="state.selected_accounts and state.selected_accounts.length > 0">
+                                            <t t-if="this.state.selected_accounts and this.state.selected_accounts.length > 0">
                                                 <div class="mb-2" style="max-height: 80px; overflow-y: auto;">
                                                     <small class="text-muted"><strong>Selected:</strong></small>
                                                     <div class="mt-1">
-                                                        <t t-foreach="state.selected_accounts" t-as="acc" t-key="acc_index">
+                                                        <t t-foreach="this.state.selected_accounts" t-as="acc" t-key="acc_index">
                                                             <span class="badge bg-success me-1 mb-1"
                                                                   style="display: inline-flex; align-items: center; font-size: 11px;">
-                                                                <t t-esc="acc.code"/> - <t t-esc="acc.name"/>
+                                                                <t t-out="acc.code"/> - <t t-out="acc.name"/>
                                                                 <i class="fa fa-times ms-1"
                                                                    style="cursor: pointer; font-size: 10px;"
                                                                    t-att-data-account-id="acc.id"
-                                                                   t-on-click="removeAccount"/>
+                                                                   t-on-click="this.removeAccount"/>
                                                             </span>
                                                         </t>
                                                     </div>
@@ -383,16 +378,16 @@
 
                                             <!-- Accounts List -->
                                             <div class="account-list" style="max-height: 180px; overflow-y: auto;">
-                                                <t t-if="state.filtered_accounts and state.filtered_accounts.length > 0">
-                                                    <t t-foreach="state.filtered_accounts" t-as="acc" t-key="acc_index">
+                                                <t t-if="this.state.filtered_accounts and this.state.filtered_accounts.length > 0">
+                                                    <t t-foreach="this.state.filtered_accounts" t-as="acc" t-key="acc_index">
                                                         <button class="dropdown-item account-item"
                                                                 type="button"
                                                                 t-att-data-account-id="acc.id"
                                                                 t-att-data-account-code="acc.code"
                                                                 t-att-data-account-name="acc.name"
-                                                                t-on-click="selectAccount"
+                                                                t-on-click="this.selectAccount"
                                                                 style="width: 100%; text-align: left; padding: 6px 10px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                                            <strong><t t-esc="acc.code"/></strong> - <t t-esc="acc.name"/>
+                                                            <strong><t t-out="acc.code"/></strong> - <t t-out="acc.name"/>
                                                         </button>
                                                     </t>
                                                 </t>
@@ -402,11 +397,11 @@
                                             </div>
 
                                             <!-- Clear All Button -->
-                                            <t t-if="state.selected_accounts and state.selected_accounts.length > 0">
+                                            <t t-if="this.state.selected_accounts and this.state.selected_accounts.length > 0">
                                                 <div role="separator" class="dropdown-divider"/>
                                                 <button class="btn btn-sm btn-danger w-100 mt-2"
                                                         type="button"
-                                                        t-on-click="clearAllAccounts"
+                                                        t-on-click="this.clearAllAccounts"
                                                         style="font-size: 12px; padding: 4px;">
                                                     Clear All
                                                 </button>
@@ -432,14 +427,14 @@
                                             <button class="report-filter-button"
                                                     t-att-data-value="'draft'"
                                                     type="button"
-                                                    t-on-click="applyFilter">
+                                                    t-on-click="this.applyFilter">
                                                 Include Draft Entries
                                             </button>
                                             <!-- Unfold All Button -->
                                             <button class="report-filter-button"
                                                     type="button"
-                                                    t-ref="unfoldButton"
-                                                    t-on-click="unfoldAll">
+                                                    t-ref="this.unfoldButton"
+                                                    t-on-click="this.unfoldAll">
                                                 Unfold All
                                             </button>
                                         </div>
@@ -452,8 +447,7 @@
             </div>
             <br/>
             <div class="table_style" style="height: 650px; overflow-y: scroll;">
-                <div class="table_view_pl" style="right:20px;width:100%;"
-                     t-ref="table_view_pl">
+                <div class="table_view_pl" style="right:20px;width:100%;">
                     <div>
                         <div class="table_main_view">
                             <!-- Table View -->
@@ -474,15 +468,15 @@
                                     </tr>
                                 </thead>
                                 <!-- Table Body -->
-                                <tbody t-ref="tbody">
+                                <tbody t-ref="this.tbody">
                                     <!-- Iterate over partners -->
-                                    <t t-if="state.partners">
+                                    <t t-if="this.state.partners">
                                         <t t-set="i" t-value="0"/>
-                                        <t t-foreach="state.partners"
+                                        <t t-foreach="this.state.partners"
                                            t-as="partner"
                                            t-key="partner_index">
                                             <t t-set="i" t-value="i + 1"/>
-                                            <t t-if="state.total[partner]['total_debit']">
+                                            <t t-if="this.state.total[partner]['total_debit']">
                                                 <tr class="border-bottom border-dark border-gainsboro">
                                                 <th>
                                                         <div data-bs-toggle="collapse"
@@ -495,7 +489,7 @@
                                                                 <i class="fa fa-caret-down"/>
                                                             </span>
                                                             <t t-if="partner != 'false'">
-                                                                <t t-esc="partner"/>
+                                                                <t t-out="partner"/>
                                                             </t>
                                                             <t t-else="">
                                                                 <span>
@@ -508,16 +502,16 @@
                                                 </th>
                                                 <th colspan="5" class="p-1">
                                                     <!-- Open Partner Button -->
-                                                    <button t-att-data-id="state.total[partner]['partner_id']"
+                                                    <button t-att-data-id="this.state.total[partner]['partner_id']"
                                                             class="btn bg-secondary"
-                                                            t-on-click="openPartner">
+                                                            t-on-click="this.openPartner">
                                                         Open Partner
                                                     </button>
                                                     <!-- Journal Items Button -->
                                                     <button style="margin-left: 3px"
-                                                            t-att-data-id="state.total[partner]['partner_id']"
+                                                            t-att-data-id="this.state.total[partner]['partner_id']"
                                                             class="btn bg-secondary"
-                                                            t-on-click="gotoJournalItem">
+                                                            t-on-click="this.gotoJournalItem">
                                                         Journal Items
                                                     </button>
                                                 </th>
@@ -528,36 +522,36 @@
                                                 <th/>
                                                 <th>
                                                     <span>
-                                                        <t t-if="state.total[partner]['total_debit']"
-                                                           t-esc="state.total[partner]['currency_id']"/>
-                                                        <t t-if="state.total[partner]['total_debit']"
-                                                           t-esc="state.total[partner]['total_debit_display']"/>
+                                                        <t t-if="this.state.total[partner]['total_debit']"
+                                                           t-out="this.state.total[partner]['currency_id']"/>
+                                                        <t t-if="this.state.total[partner]['total_debit']"
+                                                           t-out="this.state.total[partner]['total_debit_display']"/>
                                                     </span>
                                                 </th>
                                                 <th>
                                                     <span>
-                                                        <t t-if="state.total[partner]['total_credit']"
-                                                           t-esc="state.total[partner]['currency_id']"/>
-                                                        <t t-if="state.total[partner]['total_credit']"
-                                                           t-esc="state.total[partner]['total_credit_display']"/>
+                                                        <t t-if="this.state.total[partner]['total_credit']"
+                                                           t-out="this.state.total[partner]['currency_id']"/>
+                                                        <t t-if="this.state.total[partner]['total_credit']"
+                                                           t-out="this.state.total[partner]['total_credit_display']"/>
                                                     </span>
                                                 </th>
                                                 <th/>
                                                 <th>
                                                     <span class="fw-bolder">
-                                                        <t t-esc="state.total[partner]['currency_id']"/>
-                                                        <t t-esc="(state.total[partner]['total_debit'] - state.total[partner]['total_credit']).toFixed(2)"/>
+                                                        <t t-out="this.state.total[partner]['currency_id']"/>
+                                                        <t t-out="(this.state.total[partner]['total_debit'] - this.state.total[partner]['total_credit']).toFixed(2)"/>
                                                     </span>
                                                 </th>
                                             </tr>
                                             </t>
                                             <!-- Iterate over partner's initial balance -->
                                             <t t-set="j" t-value="0"/>
-                                            <t t-foreach="state.partners"
+                                            <t t-foreach="this.state.partners"
                                                t-as="partner_initial"
                                                t-key="partner_initial_index">
                                                 <t t-set="j" t-value="j + 1"/>
-                                                <t t-if="j == 1 and state.total[partner]['initial_balance'] != 0">
+                                                <t t-if="j == 1 and this.state.total[partner]['initial_balance'] != 0">
                                                     <th colspan="6">
                                                         <span style="gap: 12px;display: flex;">
 
@@ -569,7 +563,7 @@
                                                     </th>
                                                     <th>
                                                         <span>
-                                                            <t t-esc="state.total[partner]['move_name']"/>
+                                                            <t t-out="this.state.total[partner]['move_name']"/>
                                                         </span>
                                                     </th>
                                                     <th>
@@ -578,24 +572,24 @@
                                                     </th>
                                                     <th>
                                                         <span>
-                                                            <t t-esc="state.total[partner]['initial_debit'].toFixed(2)"/>
+                                                            <t t-out="this.state.total[partner]['initial_debit'].toFixed(2)"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
-                                                            <t t-esc="state.total[partner]['initial_credit'].toFixed(2)"/>
+                                                            <t t-out="this.state.total[partner]['initial_credit'].toFixed(2)"/>
                                                         </span>
                                                     </th>
                                                     <th/>
                                                     <th>
                                                         <span>
-                                                            <t t-esc="state.total[partner]['initial_balance'].toFixed(2)"/>
+                                                            <t t-out="this.state.total[partner]['initial_balance'].toFixed(2)"/>
                                                         </span>
                                                     </th>
                                                 </t>
                                             </t>
                                             <!-- Iterate over partner's value list -->
-                                            <t t-foreach="state.data[partner]"
+                                            <t t-foreach="this.state.data[partner]"
                                                t-as="valuelist"
                                                t-key="valuelist_index">
                                                 <tr class="border-bottom border-gainsboro collapse"
@@ -603,7 +597,7 @@
                                                     t-att-data-id="valuelist[0]['move_id'][0]">
                                                     <th colspan="6">
                                                         <span style="gap: 12px;display: flex;">
-                                                            <t t-esc="valuelist[0]['date']"/>
+                                                            <t t-out="valuelist[0]['date']"/>
                                                             <a type="button"
                                                                class="dropdown-toggle"
                                                                data-bs-toggle="dropdown">
@@ -611,7 +605,7 @@
                                                             <div class="dropdown-menu  journals">
                                                                 <button t-att-data-id="valuelist[0]['move_id'][0]"
                                                                         type="button"
-                                                                        t-on-click="gotoJournalEntry"
+                                                                        t-on-click="this.gotoJournalEntry"
                                                                         style="border: none;
                                                                             background-color: inherit;
                                                                             padding: 4px 8px;
@@ -629,54 +623,54 @@
                                                     </th>
                                                     <th>
                                                         <span>
-                                                            <t t-esc="valuelist[0]['jrnl']"/>
+                                                            <t t-out="valuelist[0]['jrnl']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
-                                                            <t t-esc="valuelist[0]['code']"/>
+                                                            <t t-out="valuelist[0]['code']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
                                                             <t t-if="valuelist[0]['move_name']"
-                                                               t-esc="valuelist[0]['move_id']"/>
+                                                               t-out="valuelist[0]['move_id']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
                                                             <t t-if="valuelist[0]['date_maturity']"
-                                                               t-esc="valuelist[0]['date_maturity']"/>
+                                                               t-out="valuelist[0]['date_maturity']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
                                                             <t t-if="valuelist[0]['matching_number']"
-                                                               t-esc="valuelist[0]['matching_number']"/>
+                                                               t-out="valuelist[0]['matching_number']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
                                                             <t t-if="valuelist[0]['debit']"
-                                                               t-esc="state.total[partner]['currency_id']"/>
+                                                               t-out="this.state.total[partner]['currency_id']"/>
                                                             <t t-if="valuelist[0]['debit']"
-                                                               t-esc="valuelist[0]['debit_display']"/>
+                                                               t-out="valuelist[0]['debit_display']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
                                                             <t t-if="valuelist[0]['credit']"
-                                                               t-esc="state.total[partner]['currency_id']"/>
+                                                               t-out="this.state.total[partner]['currency_id']"/>
                                                             <t t-if="valuelist[0]['credit']"
-                                                               t-esc="valuelist[0]['credit_display']"/>
+                                                               t-out="valuelist[0]['credit_display']"/>
                                                         </span>
                                                     </th>
                                                     <th>
                                                         <span>
                                                             <t t-if="valuelist[0]['amount_currency']"
-                                                               t-esc="state.total[partner]['currency_id']"/>
+                                                               t-out="this.state.total[partner]['currency_id']"/>
                                                             <t t-if="valuelist[0]['amount_currency']"
-                                                               t-esc="valuelist[0]['amount_currency_display']"/>
+                                                               t-out="valuelist[0]['amount_currency_display']"/>
                                                         </span>
                                                     </th>
                                                 </tr>
@@ -689,17 +683,17 @@
                                             Total
                                         </th>
                                         <th class="o_heading">
-                                            <t t-esc="state.currency"/>
-                                            <t t-out="state.total_debit_display"/>
+                                            <t t-out="this.state.currency"/>
+                                            <t t-out="this.state.total_debit_display"/>
                                         </th>
                                         <th class="o_heading">
-                                            <t t-esc="state.currency"/>
-                                            <t t-out="state.total_credit_display"/>
+                                            <t t-out="this.state.currency"/>
+                                            <t t-out="this.state.total_credit_display"/>
                                         </th>
                                         <th/>
                                         <th class="o_heading">
-                                            <t t-esc="state.currency"/>
-                                            <t t-out="(state.total_debit - state.total_credit).toFixed(2)"/>
+                                            <t t-out="this.state.currency"/>
+                                            <t t-out="(this.state.total_debit - this.state.total_credit).toFixed(2)"/>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -710,14 +704,14 @@
             </div>
             <div class="foot_note">
                 <t t-set="count" t-value="1"/>
-                <t t-foreach="state.message_list" t-as="message"
+                <t t-foreach="this.state.message_list" t-as="message"
                    t-key="message_index">
                     <t t-out="count"/>.
                     <t t-set="count" t-value="count + 1"/>
                     <t t-out="message['message']"/>
                     <i t-att-id="message['id']" style="margin-left: 1%;"
                        class="fa fa-trash"
-                       t-on-click="deleteNote"/>
+                       t-on-click="this.deleteNote"/>
                     <br/>
                 </t>
             </div>

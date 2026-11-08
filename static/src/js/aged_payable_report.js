@@ -2,22 +2,24 @@
 const { Component } = owl;
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { useRef, useState } from "@odoo/owl";
+import { proxy, signal, useProps } from "@odoo/owl";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 import { BlockUI,unblockUI } from "@web/core/ui/block_ui";
 import { download } from "@web/core/network/download";
 const actionRegistry = registry.category("actions");
 const today = luxon.DateTime.now();
 
 class AgedPayable extends owl.Component {
+    props = useProps(standardActionServiceProps);
     async setup() {
         super.setup(...arguments);
         this.initial_render = true;
         this.orm = useService('orm');
         this.action = useService('action');
-        this.tbody = useRef('tbody');
-        this.date_range = useRef('date_to');
-        this.unfoldButton = useRef('unfoldButton');
-        this.state = useState({
+        this.tbody = signal.ref();
+        this.date_range = signal.ref();
+        this.unfoldButton = signal.ref();
+        this.state = proxy({
             move_line: null,
             data: null,
             total: null,
@@ -141,13 +143,13 @@ class AgedPayable extends owl.Component {
          * @param {Event} ev - The event object triggered by the action.
          */
         if (!ev.target.classList.contains("selected-filter")) {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                 this.tbody.el.children[length].classList.add('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                 this.tbody().children[length].classList.add('show')
             }
             ev.target.classList.add("selected-filter");
         } else {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.remove('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.remove('show')
             }
             ev.target.classList.remove("selected-filter");
         }
@@ -192,7 +194,7 @@ class AgedPayable extends owl.Component {
     filter() {
         let filters = {
             'partner': this.state.selected_partner_rec,
-            'end_date': this.date_range.el.value,
+            'end_date': this.date_range().value,
         };
         return filters
     }
@@ -258,13 +260,13 @@ class AgedPayable extends owl.Component {
         let TotalCredit = 0;
         if (ev.target && ev.target.attributes["data-value"]) {
             if (ev.target.attributes["data-value"].value == 'today') {
-                this.date_range.el.value = today.toFormat('yyyy-MM-dd')
+                this.date_range().value = today.toFormat('yyyy-MM-dd')
             } else if (ev.target.attributes["data-value"].value == 'last-month-end') {
-                this.date_range.el.value = today.startOf('month').minus({ days: 1 }).toFormat('yyyy-MM-dd')
+                this.date_range().value = today.startOf('month').minus({ days: 1 }).toFormat('yyyy-MM-dd')
             } else if (ev.target.attributes["data-value"].value == 'last-quarter-end') {
-                this.date_range.el.value = today.startOf('quarter').minus({ days: 1 }).toFormat('yyyy-MM-dd')
+                this.date_range().value = today.startOf('quarter').minus({ days: 1 }).toFormat('yyyy-MM-dd')
             } else if (ev.target.attributes["data-value"].value == 'last-year-end') {
-                this.date_range.el.value = today.startOf('year').minus({ days: 1 }).toFormat('yyyy-MM-dd')
+                this.date_range().value = today.startOf('year').minus({ days: 1 }).toFormat('yyyy-MM-dd')
             }
         } else if (e && e.input && e.input.attributes.placeholder.value == 'Partner' && !is_delete) {
             this.state.selected_partner.push(ev[0].id)
@@ -274,7 +276,7 @@ class AgedPayable extends owl.Component {
             this.state.selected_partner_rec.splice(index, 1)
             this.state.selected_partner = this.state.selected_partner_rec.map((rec) => rec.id)
         }
-        let filtered_data = await this.orm.call("age.payable.report", "get_filter_values", [this.date_range.el.value, this.state.selected_partner,]);
+        let filtered_data = await this.orm.call("age.payable.report", "get_filter_values", [this.date_range().value, this.state.selected_partner,]);
         for (const index in filtered_data) {
             const value = filtered_data[index];
 

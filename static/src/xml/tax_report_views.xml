@@ -10,7 +10,7 @@
                 <div class="filter_view pt-3 pb-5">
                     <div class="">
                         <h2 class="text-uppercase" style="padding:10px">
-                            <t t-esc="props.action.name"/>
+                            <t t-out="this.props.action.name"/>
                         </h2>
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px;margin-bottom: 15px;display: flex;">
@@ -19,14 +19,14 @@
                                 <!-- Print (PDF) Button -->
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="printPdf"
+                                        t-on-click="this.printPdf"
                                         style="margin-right: 8px;">
                                     Print (PDF)
                                 </button>
                                 <!-- Export (XLSX) Button -->
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="print_xlsx">
+                                        t-on-click="this.print_xlsx">
                                     Export (XLSX)
                                 </button>
                             </div>
@@ -49,21 +49,21 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'month'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             This Month
                                         </button>
                                         <!-- This Quarter Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'quarter'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             This Quarter
                                         </button>
                                         <!-- This Year Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'year'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             This Year
                                         </button>
                                         <!-- Separator -->
@@ -73,21 +73,21 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'last-month'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Last month
                                         </button>
                                         <!-- Last Quarter Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'last-quarter'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Last quarter
                                         </button>
                                         <!-- Last Year Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'last-year'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Last year
                                         </button>
                                         <!-- Separator -->
@@ -101,8 +101,8 @@
                                              data-target-input="nearest">
 
                                             <input type="date" id="start_date"
-                                                   t-on-change="applyFilter"
-                                                   t-ref="date_from"
+                                                   t-on-change="this.applyFilter"
+                                                   t-ref="this.start_date"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="start_date"/>
                                         </div>
@@ -113,8 +113,8 @@
                                         <div class="input-group date"
                                              data-target-input="nearest">
                                             <input type="date" id="end_date"
-                                                   t-on-change="applyFilter"
-                                                   t-ref="date_to"
+                                                   t-on-change="this.applyFilter"
+                                                   t-ref="this.end_date"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="end_date"/>
                                         </div>
@@ -135,7 +135,7 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'no comparison'"
                                                 type="button"
-                                                t-on-click="applyComparison">
+                                                t-on-click="this.applyComparison">
                                             No Comparison
                                         </button>
                                         <div role="separator"
@@ -150,16 +150,16 @@
                                              data-target-input="nearest">
 
                                             <input type="number"
-                                                   t-ref="periods"
+                                                   t-ref="this.period"
                                                    min="1"
-                                                   t-on-input="onPeriodChange"
+                                                   t-on-input="this.onPeriodChange"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="previous_period"/>
                                         </div>
                                         <button class="btn btn-primary"
                                                 type="button"
                                                 style="margin-left: 19px;margin-top: 4px;"
-                                                t-on-click="applyComparisonPeriod">
+                                                t-on-click="this.applyComparisonPeriod">
                                             Apply
                                         </button>
                                         <div role="separator"
@@ -173,8 +173,8 @@
                                         <div class="input-group comparison"
                                              data-target-input="nearest">
                                             <input type="number"
-                                                   t-ref="period_year"
-                                                   t-on-input="onPeriodYearChange"
+                                                   t-ref="this.period_year"
+                                                   t-on-input="this.onPeriodYearChange"
                                                    min="1"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="period_year"/>
@@ -182,7 +182,7 @@
                                         <button class="btn btn-primary"
                                                 type="button"
                                                 style="margin-left: 19px;margin-top: 4px;"
-                                                t-on-click="applyComparisonYear">
+                                                t-on-click="this.applyComparisonYear">
                                             Apply
                                         </button>
                                     </div>
@@ -203,7 +203,7 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'draft'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Include Draft Entries
                                         </button>
                                     </div>
@@ -223,21 +223,21 @@
                                         <!-- Include Draft Entries Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'global'"
-                                                type="button" t-ref="global"
-                                                t-on-click="applyFilter">
+                                                type="button" t-ref="this.global"
+                                                t-on-click="this.applyFilter">
                                             Generic Tax Report
                                         </button>
                                         <button class="report-filter-button"
                                                 t-att-data-value="'account tax'"
-                                                type="button" t-ref="account"
-                                                t-on-click="applyFilter">
-                                            Group by: Account > Tax
+                                                type="button" t-ref="this.account"
+                                                t-on-click="this.applyFilter">
+                                            Group by: Account &gt; Tax
                                         </button>
                                         <button class="report-filter-button"
                                                 t-att-data-value="'tax account'"
-                                                type="button" t-ref="tax"
-                                                t-on-click="applyFilter">
-                                            Group by: Tax > Account
+                                                type="button" t-ref="this.tax"
+                                                t-on-click="this.applyFilter">
+                                            Group by: Tax &gt; Account
                                         </button>
                                     </div>
                                 </div>
@@ -248,8 +248,7 @@
             </div>
             <div>
                 <!-- Table View -->
-                <div class="table_view_gl" style="right:20px;height: 650px; overflow-y: scroll;"
-                     t-ref="table_view_gl">
+                <div class="table_view_gl" style="right:20px;height: 650px; overflow-y: scroll;">
                     <div>
                         <div class="table_main_view">
                             <table cellspacing="0" width="100%">
@@ -257,12 +256,12 @@
                                     <tr class="o_heading"
                                         style="text-align:center;">
                                         <th colspan="7"/>
-                                        <t t-if="state.date_viewed.length != 0">
-                                            <t t-foreach="state.date_viewed"
+                                        <t t-if="this.state.date_viewed.length != 0">
+                                            <t t-foreach="this.state.date_viewed"
                                                t-as="date_view"
                                                t-key="date_view_index">
                                                 <th colspan="2">
-                                                    <t t-esc="date_view"/>
+                                                    <t t-out="date_view"/>
                                                 </th>
                                             </t>
                                         </t>
@@ -271,9 +270,9 @@
                                         style="text-align:center;">
                                         <th colspan="6"/>
                                         <th/>
-                                        <t t-if="state.apply_comparison == true">
+                                        <t t-if="this.state.apply_comparison == true">
                                             <t t-set="number_of_periods"
-                                               t-value="comparison_number_range"/>
+                                               t-value="this.comparison_number_range"/>
                                             <t t-foreach="number_of_periods"
                                                t-as="number" t-key="number">
                                                 <th>NET</th>
@@ -284,8 +283,8 @@
                                         <th>TAX</th>
                                     </tr>
                                 </thead>
-                                <tbody t-ref="tbody">
-                                    <t t-if="state.data">
+                                <tbody t-ref="this.tbody">
+                                    <t t-if="this.state.data">
                                         <t t-set="prev_account" t-value="None"/>
                                         <t t-set="prev_tax" t-value="None"/>
                                         <tr class="border-bottom"
@@ -297,9 +296,9 @@
                                             </th>
                                             <th/>
                                             <th/>
-                                            <t t-if="state.apply_comparison == true">
+                                            <t t-if="this.state.apply_comparison == true">
                                                 <t t-set="number_of_periods"
-                                                   t-value="comparison_number_range"/>
+                                                   t-value="this.comparison_number_range"/>
                                                 <t t-foreach="number_of_periods"
                                                    t-as="no" t-key="no">
                                                     <th/>
@@ -307,16 +306,16 @@
                                                 </t>
                                             </t>
                                             <th style="text-align:center;font-weight: 700;">
-                                                <t t-esc="state.sale_total.toFixed(2)"/>
+                                                <t t-out="this.state.sale_total.toFixed(2)"/>
                                             </th>
                                         </tr>
                                         <t t-set="i" t-value="0"/>
-                                        <t t-foreach="state.data.sale"
+                                        <t t-foreach="this.state.data.sale"
                                            t-as="sale_tax_line"
                                            t-key="sale_tax_line_index">
                                             <t t-set="i" t-value="i + 1"/>
-                                            <t t-if="state.report_type">
-                                                <t t-if="Object.keys(state.report_type) == 'account'">
+                                            <t t-if="this.state.report_type">
+                                                <t t-if="Object.keys(this.state.report_type) == 'account'">
                                                     <t t-if="prev_account !== sale_tax_line['account']">
                                                         <t t-set="prev_account"
                                                            t-value="sale_tax_line['account']"/>
@@ -324,7 +323,7 @@
                                                             style="border-spacing: 0 10px;">
                                                             <th colspan="6">
                                                                 <span>
-                                                                    <t t-esc="sale_tax_line['account']"/>
+                                                                    <t t-out="sale_tax_line['account']"/>
                                                                 </span>
                                                             </th>
                                                         </tr>
@@ -338,9 +337,9 @@
                                                             style="border-spacing: 0 10px;">
                                                             <th colspan="6">
                                                                 <span>
-                                                                    <t t-esc="sale_tax_line.name"/>
+                                                                    <t t-out="sale_tax_line.name"/>
                                                                     (
-                                                                    <t t-esc="sale_tax_line.amount"/>
+                                                                    <t t-out="sale_tax_line.amount"/>
                                                                     %)
                                                                 </span>
                                                             </th>
@@ -352,44 +351,44 @@
                                                 style="border-spacing: 0 10px;font-weight: 400;">
                                                 <th colspan="6">
                                                     <span style="font-weight: 400;">
-                                                        <t t-if="state.report_type and Object.keys(state.report_type) == 'tax'">
-                                                            <t t-esc="sale_tax_line['account']"/>
+                                                        <t t-if="this.state.report_type and Object.keys(this.state.report_type) == 'tax'">
+                                                            <t t-out="sale_tax_line['account']"/>
                                                         </t>
                                                         <t t-else="">
-                                                            <t t-esc="sale_tax_line.name"/>
+                                                            <t t-out="sale_tax_line.name"/>
                                                             (
-                                                            <t t-esc="sale_tax_line.amount"/>
+                                                            <t t-out="sale_tax_line.amount"/>
                                                             %)
                                                         </t>
                                                     </span>
                                                 </th>
                                                 <th/>
-                                                <t t-if="state.apply_comparison == true">
+                                                <t t-if="this.state.apply_comparison == true">
                                                     <t t-if="sale_tax_line['dynamic net']">
                                                         <t t-set="number_of_periods"
-                                                           t-value="comparison_number_range"/>
+                                                           t-value="this.comparison_number_range"/>
                                                         <t t-foreach="number_of_periods"
                                                            t-as="num"
                                                            t-key="num">
                                                             <th style="text-align:center;font-weight: 400;">
                                                                 <t t-if="sale_tax_line['dynamic net']['dynamic_total_net_sum' + num]"
-                                                                   t-esc="sale_tax_line['dynamic net']['dynamic_total_net_sum' + num]"/>
+                                                                   t-out="sale_tax_line['dynamic net']['dynamic_total_net_sum' + num]"/>
                                                             </th>
                                                             <th style="text-align:center;font-weight: 400;">
                                                                 <t t-if="sale_tax_line['dynamic tax']['dynamic_total_tax_sum' + num]"
-                                                                   t-esc="sale_tax_line['dynamic tax']['dynamic_total_tax_sum' + num]"/>
+                                                                   t-out="sale_tax_line['dynamic tax']['dynamic_total_tax_sum' + num]"/>
                                                             </th>
                                                         </t>
                                                     </t>
                                                 </t>
                                                 <th style="text-align:center;">
                                                     <span style="font-weight: 400;">
-                                                        <t t-esc="sale_tax_line.net"/>
+                                                        <t t-out="sale_tax_line.net"/>
                                                     </span>
                                                 </th>
                                                 <th style="text-align:center;">
                                                     <span style="font-weight: 400;">
-                                                        <t t-esc="sale_tax_line.tax"/>
+                                                        <t t-out="sale_tax_line.tax"/>
                                                     </span>
                                                 </th>
                                             </tr>
@@ -404,9 +403,9 @@
                                             </th>
                                             <th/>
                                             <th/>
-                                            <t t-if="state.apply_comparison == true">
+                                            <t t-if="this.state.apply_comparison == true">
                                                 <t t-set="number_of_periods"
-                                                   t-value="comparison_number_range"/>
+                                                   t-value="this.comparison_number_range"/>
                                                 <t t-foreach="number_of_periods"
                                                    t-as="numb" t-key="numb">
                                                     <th/>
@@ -414,21 +413,21 @@
                                                 </t>
                                             </t>
                                             <th style="text-align:center;font-weight: 700;">
-                                                <t t-esc="state.purchase_total.toFixed(2)"/>
+                                                <t t-out="this.state.purchase_total.toFixed(2)"/>
                                             </th>
                                         </tr>
                                         <t t-set="i" t-value="0"/>
-                                        <t t-foreach="state.data.purchase"
+                                        <t t-foreach="this.state.data.purchase"
                                            t-as="purchase_tax_line"
                                            t-key="purchase_tax_line_index">
                                             <t t-set="i" t-value="i + 1"/>
-                                            <t t-if="state.report_type">
-                                                <t t-if="Object.keys(state.report_type) == 'account'">
+                                            <t t-if="this.state.report_type">
+                                                <t t-if="Object.keys(this.state.report_type) == 'account'">
                                                     <tr class="border-bottom"
                                                         style="border-spacing: 0 10px;">
                                                         <th colspan="6">
                                                             <span>
-                                                                <t t-esc="purchase_tax_line['account']"/>
+                                                                <t t-out="purchase_tax_line['account']"/>
                                                             </span>
                                                         </th>
                                                     </tr>
@@ -440,9 +439,9 @@
                                                         style="border-spacing: 0 10px;">
                                                         <th colspan="6">
                                                             <span>
-                                                                <t t-esc="purchase_tax_line.name"/>
+                                                                <t t-out="purchase_tax_line.name"/>
                                                                 (
-                                                                <t t-esc="purchase_tax_line.amount"/>
+                                                                <t t-out="purchase_tax_line.amount"/>
                                                                 %)
                                                             </span>
                                                         </th>
@@ -453,44 +452,44 @@
                                                 style="border-spacing: 0 10px;">
                                                 <th colspan="6">
                                                     <span style="font-weight: 400;">
-                                                        <t t-if="state.report_type and Object.keys(state.report_type) == 'tax'">
-                                                            <t t-esc="purchase_tax_line['account']"/>
+                                                        <t t-if="this.state.report_type and Object.keys(this.state.report_type) == 'tax'">
+                                                            <t t-out="purchase_tax_line['account']"/>
                                                         </t>
                                                         <t t-else="">
-                                                            <t t-esc="purchase_tax_line.name"/>
+                                                            <t t-out="purchase_tax_line.name"/>
                                                             (
-                                                            <t t-esc="purchase_tax_line.amount"/>
+                                                            <t t-out="purchase_tax_line.amount"/>
                                                             %)
                                                         </t>
                                                     </span>
                                                 </th>
                                                 <th/>
-                                                <t t-if="state.apply_comparison == true">
+                                                <t t-if="this.state.apply_comparison == true">
                                                     <t t-if="purchase_tax_line['dynamic net']">
                                                         <t t-set="number_of_periods"
-                                                           t-value="comparison_number_range"/>
+                                                           t-value="this.comparison_number_range"/>
                                                         <t t-foreach="number_of_periods"
                                                            t-as="period"
                                                            t-key="period">
                                                             <th style="text-align:center;font-weight: 400;">
                                                                 <t t-if="purchase_tax_line['dynamic net']['dynamic_total_net_sum' + period]"
-                                                                   t-esc="purchase_tax_line['dynamic net']['dynamic_total_net_sum' + period]"/>
+                                                                   t-out="purchase_tax_line['dynamic net']['dynamic_total_net_sum' + period]"/>
                                                             </th>
                                                             <th style="text-align:center;font-weight: 400;">
                                                                 <t t-if="purchase_tax_line['dynamic tax']['dynamic_total_tax_sum' + period]"
-                                                                   t-esc="purchase_tax_line['dynamic tax']['dynamic_total_tax_sum' + period]"/>
+                                                                   t-out="purchase_tax_line['dynamic tax']['dynamic_total_tax_sum' + period]"/>
                                                             </th>
                                                         </t>
                                                     </t>
                                                 </t>
                                                 <th style="text-align:center;">
                                                     <span style="font-weight: 400;">
-                                                        <t t-esc="purchase_tax_line.net"/>
+                                                        <t t-out="purchase_tax_line.net"/>
                                                     </span>
                                                 </th>
                                                 <th style="text-align:center;">
                                                     <span style="font-weight: 400;">
-                                                        <t t-esc="purchase_tax_line.tax"/>
+                                                        <t t-out="purchase_tax_line.tax"/>
                                                     </span>
                                                 </th>
                                             </tr>

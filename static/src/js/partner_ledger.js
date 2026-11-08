@@ -2,20 +2,22 @@
 const { Component } = owl;
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { useRef, useState } from "@odoo/owl";
+import { proxy, signal, useProps } from "@odoo/owl";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 import { BlockUI } from "@web/core/ui/block_ui";
 import { download } from "@web/core/network/download";
 const actionRegistry = registry.category("actions");
 class PartnerLedger extends owl.Component {
+    props = useProps(standardActionServiceProps);
     setup() {
         super.setup(...arguments);
         this.initial_render = true;
         this.orm = useService('orm');
         this.action = useService('action');
-        this.tbody = useRef('tbody');
-        this.unfoldButton = useRef('unfoldButton');
+        this.tbody = signal.ref();
+        this.unfoldButton = signal.ref();
         this.dialog = useService("dialog");
-        this.state = useState({
+        this.state = proxy({
             partners: null,
             data: null,
             total: null,
@@ -700,8 +702,8 @@ class PartnerLedger extends owl.Component {
         this.state.total_credit = totalCreditSum;
         this.state.total_credit_display = this.formatNumberWithSeparators(totalCreditSum);
 
-        if (this.unfoldButton.el && this.unfoldButton.el.classList.contains("selected-filter")) {
-            this.unfoldButton.el.classList.remove("selected-filter");
+        if (this.unfoldButton() && this.unfoldButton().classList.contains("selected-filter")) {
+            this.unfoldButton().classList.remove("selected-filter");
         }
     } catch (error) {
         console.error('Error applying filters:', error);
@@ -721,20 +723,17 @@ class PartnerLedger extends owl.Component {
          * @param {Event} ev - The event object triggered by the action.
          */
         if (!ev.target.classList.contains("selected-filter")) {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.add('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.add('show')
             }
             ev.target.classList.add("selected-filter");
         } else {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                  this.tbody.el.children[length].classList.remove('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                  this.tbody().children[length].classList.remove('show')
             }
             ev.target.classList.remove("selected-filter");
         }
     }
 }
-PartnerLedger.defaultProps = {
-    resIds: [],
-};
 PartnerLedger.template = 'pl_template_new';
 actionRegistry.add("p_l", PartnerLedger);

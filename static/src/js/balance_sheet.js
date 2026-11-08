@@ -3,23 +3,25 @@ const { Component } = owl;
 const now = new Date();
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { useRef, useState } from "@odoo/owl";
+import { proxy, signal, useProps } from "@odoo/owl";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 import { BlockUI } from "@web/core/ui/block_ui";
 import { download } from "@web/core/network/download";
 const actionRegistry = registry.category("actions");
 
 class BalanceSheet extends owl.Component {
+    props = useProps(standardActionServiceProps);
     async setup() {
         super.setup(...arguments);
         this.initial_render = true;
         this.orm = useService('orm');
         this.action = useService('action');
-        this.tbody = useRef('tbody');
-        this.posted = useRef('posted');
-        this.period = useRef('periods');
-        this.period_year = useRef('period_year');
-        this.draft = useRef('draft');
-        this.state = useState({
+        this.tbody = signal.ref();
+        this.posted = signal.ref();
+        this.period = signal.ref();
+        this.period_year = signal.ref();
+        this.draft = signal.ref();
+        this.state = proxy({
             data: null,
             filter_data: null,
             year : [now.getFullYear()],
@@ -182,9 +184,9 @@ class BalanceSheet extends owl.Component {
         self = this;
         ev.target.classList.add('selected-filter')
         if (ev.target.value == 'draft') {
-            this.posted.el.classList.remove('selected-filter')
+            this.posted().classList.remove('selected-filter')
         } else {
-            this.draft.el.classList.remove('selected-filter')
+            this.draft().classList.remove('selected-filter')
         }
         this.filter = ({
             'target': ev.target.value
@@ -201,13 +203,13 @@ class BalanceSheet extends owl.Component {
      * @returns {void}
      */
         if (!ev.target.classList.contains("selected-filter")) {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                  this.tbody.el.children[length].classList.add('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                  this.tbody().children[length].classList.add('show')
             }
             ev.target.classList.add("selected-filter");
         } else {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.remove('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.remove('show')
             }
             ev.target.classList.remove("selected-filter");
         }
@@ -248,13 +250,13 @@ class BalanceSheet extends owl.Component {
         this.load_data(this.initial_render);
     }
     onPeriodChange(ev){
-        this.period_year.el.value = ev.target.value
+        this.period_year().value = ev.target.value
     }
     onPeriodYearChange(ev){
-        this.period.el.value = ev.target.value
+        this.period().value = ev.target.value
     }
     async applyComparisonPeriod(){
-        this.state.comparison  = this.period.el.value
+        this.state.comparison  = this.period().value
         this.state.comparison_type = "month"
         let monthNamesShort = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
         let res = await this.orm.call("dynamic.balance.sheet.report", "comparison_filter", [this.wizard_id, this.state.comparison]);
@@ -266,7 +268,7 @@ class BalanceSheet extends owl.Component {
         this.load_data(self.initial_render);
     }
     async applyComparisonYear(){
-        this.state.comparison = this.period_year.el.value
+        this.state.comparison = this.period_year().value
         this.state.comparison_type = "year"
         let res = await this.orm.call("dynamic.balance.sheet.report", "comparison_filter_year", [this.wizard_id, this.state.comparison]);
         this.state.year = [now.getFullYear()]

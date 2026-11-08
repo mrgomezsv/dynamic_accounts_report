@@ -2,20 +2,22 @@
 const { Component } = owl;
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { useRef, useState } from "@odoo/owl";
+import { proxy, signal, useProps } from "@odoo/owl";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 import { BlockUI } from "@web/core/ui/block_ui";
 import { download } from "@web/core/network/download";
 const actionRegistry = registry.category("actions");
 
 class GeneralLedger extends owl.Component {
+    props = useProps(standardActionServiceProps);
     setup() {
         super.setup(...arguments);
         this.initial_render = true;
         this.orm = useService('orm');
         this.action = useService('action');
-        this.tbody = useRef('tbody');
-        this.unfoldButton = useRef('unfoldButton');
-        this.state = useState({
+        this.tbody = signal.ref();
+        this.unfoldButton = signal.ref();
+        this.state = proxy({
             account: null,
             account_data: null,
             account_data_list: null,
@@ -325,19 +327,19 @@ class GeneralLedger extends owl.Component {
         this.state.account_total = account_totals
         this.state.total_debit = totalDebitSum.toFixed(2)
         this.state.total_credit = totalCreditSum.toFixed(2)
-        if (this.unfoldButton.el.classList.contains("selected-filter")) {
-            this.unfoldButton.el.classList.remove("selected-filter");
+        if (this.unfoldButton().classList.contains("selected-filter")) {
+            this.unfoldButton().classList.remove("selected-filter");
         }
     }
     async unfoldAll(ev) {
         if (!ev.target.classList.contains("selected-filter")) {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.add('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.add('show')
             }
             ev.target.classList.add("selected-filter");
         } else {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.remove('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.remove('show')
             }
             ev.target.classList.remove("selected-filter");
         }
@@ -412,8 +414,5 @@ class GeneralLedger extends owl.Component {
         return filters
     }
 }
-GeneralLedger.defaultProps = {
-    resIds: [],
-};
 GeneralLedger.template = 'gl_template_new';
 actionRegistry.add("gen_l", GeneralLedger);

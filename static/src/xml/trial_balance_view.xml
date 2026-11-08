@@ -10,7 +10,7 @@
                 <div class="filter_view_gl pt-3 pb-5">
                     <div class="">
                         <h2 class="text-uppercase" style="padding:10px">
-                            <t t-esc="props.action.name"/>
+                            <t t-out="this.props.action.name"/>
                         </h2>
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px;margin-bottom: 15px;display: flex;">
@@ -19,14 +19,14 @@
                                 <!-- Print (PDF) Button -->
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="printPdf"
+                                        t-on-click="this.printPdf"
                                         style="margin-right: 8px;">
                                     Print (PDF)
                                 </button>
                                 <!-- Export (XLSX) Button -->
                                 <button type="button"
                                         class="btn btn-primary btn-report-print"
-                                        t-on-click="print_xlsx">
+                                        t-on-click="this.print_xlsx">
                                     Export (XLSX)
                                 </button>
                             </div>
@@ -49,21 +49,21 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'month'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             This Month
                                         </button>
                                         <!-- This Quarter Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'quarter'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             This Quarter
                                         </button>
                                         <!-- This Year Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'year'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             This Year
                                         </button>
                                         <!-- Separator -->
@@ -73,21 +73,21 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'last-month'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Last month
                                         </button>
                                         <!-- Last Quarter Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'last-quarter'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Last quarter
                                         </button>
                                         <!-- Last Year Button -->
                                         <button class="report-filter-button"
                                                 t-att-data-value="'last-year'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Last year
                                         </button>
                                         <!-- Separator -->
@@ -101,8 +101,8 @@
                                              data-target-input="nearest">
 
                                             <input type="date" id="start_date"
-                                                   t-on-change="applyFilter"
-                                                   t-ref="date_from"
+                                                   t-on-change="this.applyFilter"
+                                                   t-ref="this.start_date"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="start_date"/>
                                         </div>
@@ -113,8 +113,8 @@
                                         <div class="input-group date"
                                              data-target-input="nearest">
                                             <input type="date" id="end_date"
-                                                   t-on-change="applyFilter"
-                                                   t-ref="date_to"
+                                                   t-on-change="this.applyFilter"
+                                                   t-ref="this.end_date"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="end_date"/>
                                         </div>
@@ -135,7 +135,7 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'no comparison'"
                                                 type="button"
-                                                t-on-click="applyComparison">
+                                                t-on-click="this.applyComparison">
                                             No Comparison
                                         </button>
                                         <div role="separator"
@@ -150,16 +150,16 @@
                                              data-target-input="nearest">
 
                                             <input type="number"
-                                                   t-ref="periods"
+                                                   t-ref="this.period"
                                                    min="1"
-                                                   t-on-input="onPeriodChange"
+                                                   t-on-input="this.onPeriodChange"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="previous_period"/>
                                         </div>
                                         <button class="btn btn-primary"
                                                 type="button"
                                                 style="margin-left: 19px;margin-top: 4px;"
-                                                t-on-click="applyComparisonPeriod">
+                                                t-on-click="this.applyComparisonPeriod">
                                             Apply
                                         </button>
                                         <div role="separator"
@@ -173,8 +173,8 @@
                                         <div class="input-group comparison"
                                              data-target-input="nearest">
                                             <input type="number"
-                                                   t-ref="period_year"
-                                                   t-on-input="onPeriodYearChange"
+                                                   t-ref="this.period_year"
+                                                   t-on-input="this.onPeriodYearChange"
                                                    min="1"
                                                    style="border:none;border-bottom: 1px solid #000;padding: 5px;outline: none;"
                                                    name="period_year"/>
@@ -182,7 +182,7 @@
                                         <button class="btn btn-primary"
                                                 type="button"
                                                 style="margin-left: 19px;margin-top: 4px;"
-                                                t-on-click="applyComparisonYear">
+                                                t-on-click="this.applyComparisonYear">
                                             Apply
                                         </button>
                                     </div>
@@ -199,18 +199,18 @@
                                     <span class="fa fa-book" title="Journals"
                                           role="img"/>
                                     Journals
-                                    <t t-if="state.selected_journal_list">:
-                                        <t t-foreach="state.selected_journal_list"
+                                    <t t-if="this.state.selected_journal_list">:
+                                        <t t-foreach="this.state.selected_journal_list"
                                            t-as="Journal_key"
                                            t-key="Journal_key_index">
-                                            <t t-foreach="state.journals"
+                                            <t t-foreach="this.state.journals"
                                                t-as="Journal"
                                                t-key="Journal_index">
                                                 <t t-if="Journal['id'] == Journal_key">
-                                                    <t t-esc="Journal['name']"/>
+                                                    <t t-out="Journal['name']"/>
                                                 </t>
                                             </t>
-                                            <t t-if="Journal_key_index != Object.keys(state.selected_journal_list).length - 1">
+                                            <t t-if="Journal_key_index != Object.keys(this.state.selected_journal_list).length - 1">
                                                 ,
                                             </t>
                                         </t>
@@ -218,16 +218,16 @@
                                 </a>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="list-group">
-                                        <t t-if="state.journals">
-                                            <t t-foreach="state.journals"
+                                        <t t-if="this.state.journals">
+                                            <t t-foreach="this.state.journals"
                                                t-as="journal"
                                                t-key="journal.id">
                                                 <button class="report-filter-button"
                                                         t-att-data-value="'journal'"
                                                         t-att-data-id="journal.id"
                                                         type="button"
-                                                        t-on-click="applyFilter">
-                                                    <t t-esc="journal.name"/>
+                                                        t-on-click="this.applyFilter">
+                                                    <t t-out="journal.name"/>
                                                 </button>
                                             </t>
                                         </t>
@@ -242,7 +242,7 @@
                                           role="img"
                                           aria-label="Dates"/>
                                     Options : Posted Entries ,
-                                    <t t-esc="Object.keys(state.method)[(Object.keys(state.method).length)-1]"/>
+                                    <t t-out="Object.keys(this.state.method)[(Object.keys(this.state.method).length)-1]"/>
                                 </a>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="list-group">
@@ -250,13 +250,13 @@
                                         <button class="report-filter-button"
                                                 t-att-data-value="'draft'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Include Draft Entries
                                         </button>
                                         <button class="report-filter-button"
                                                 t-att-data-value="'cash-basis'"
                                                 type="button"
-                                                t-on-click="applyFilter">
+                                                t-on-click="this.applyFilter">
                                             Cash basis method
                                         </button>
                                     </div>
@@ -268,8 +268,7 @@
             </div>
             <div class="table_style" style="height: 650px; overflow-y: scroll;">
                 <!-- Table View -->
-                <div class="table_view_gl" style="right:20px;width:100%;"
-                     t-ref="table_view_gl">
+                <div class="table_view_gl" style="right:20px;width:100%;">
                     <div>
                         <div class="table_main_view">
                             <table cellspacing="0" width="100%">
@@ -278,12 +277,12 @@
                                         style="text-align:center;">
                                         <th colspan="6"/>
                                         <th colspan="2">Initial Balance</th>
-                                        <t t-if="state.date_viewed.length != 0">
-                                            <t t-foreach="state.date_viewed"
+                                        <t t-if="this.state.date_viewed.length != 0">
+                                            <t t-foreach="this.state.date_viewed"
                                                t-as="date_view"
                                                t-key="date_view_index">
                                                 <th colspan="2">
-                                                    <t t-esc="date_view"/>
+                                                    <t t-out="date_view"/>
                                                 </th>
                                             </t>
                                         </t>
@@ -298,9 +297,9 @@
                                         <th>Credit</th>
                                         <th>Debit</th>
                                         <th>Credit</th>
-                                        <t t-if="state.apply_comparison == true">
+                                        <t t-if="this.state.apply_comparison == true">
                                             <t t-set="number_of_periods"
-                                               t-value="comparison_number_range"/>
+                                               t-value="this.comparison_number_range"/>
                                             <t t-foreach="number_of_periods"
                                                t-as="number" t-key="number">
                                                 <th>Debit</th>
@@ -309,11 +308,11 @@
                                         </t>
                                     </tr>
                                 </thead>
-                                <tbody t-ref="tbody">
+                                <tbody t-ref="this.tbody">
                                     <t t-set="show" t-value="True"/>
                                     <t t-if="this.state.default_report == false">
-                                        <t t-if="state.data">
-                                            <t t-foreach="state.data" t-as="each" t-key="each.account_id">
+                                        <t t-if="this.state.data">
+                                            <t t-foreach="this.state.data" t-as="each" t-key="each.account_id">
                                                 <t t-set="show" t-value="False"/>
                                                 <tr class="border-bottom"
                                                     style="border-spacing: 0 10px;">
@@ -323,12 +322,12 @@
                                                                data-bs-toggle="dropdown"
                                                                style="color: black;">
                                                                 <span>
-                                                                    <t t-esc="each['account']"/>
+                                                                    <t t-out="each['account']"/>
                                                                 </span>
                                                             </a>
                                                             <span class="dropdown-menu">
                                                                 <a role="menuitem"
-                                                                   t-on-click="show_gl"
+                                                                   t-on-click="this.show_gl"
                                                                    class="show_gl">
                                                                     General Ledger
                                                                 </a>
@@ -336,7 +335,7 @@
                                                                      class="dropdown-divider"/>
                                                                 <a role="menuitem"
                                                                    t-att-data-id="each['account_id']"
-                                                                   t-on-click="gotoJournalItem"
+                                                                   t-on-click="this.gotoJournalItem"
                                                                    class="show_gl">
                                                                     Journal Items
                                                                 </a>
@@ -345,93 +344,93 @@
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="each['initial_total_debit']"
-                                                           t-esc="each['initial_total_debit']"/>
+                                                           t-out="each['initial_total_debit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="each['initial_total_credit']"
-                                                           t-esc="each['initial_total_credit']"/>
+                                                           t-out="each['initial_total_credit']"/>
                                                     </th>
-                                                    <t t-if="state.apply_comparison == true">
+                                                    <t t-if="this.state.apply_comparison == true">
                                                         <t t-set="number_of_periods"
-                                                           t-value="comparison_number_range"/>
+                                                           t-value="this.comparison_number_range"/>
                                                         <t t-foreach="number_of_periods"
                                                            t-as="num" t-key="num">
                                                             <th style="text-align:center;">
                                                                 <t t-if="each['dynamic_total_debit_' + num]"
-                                                                   t-esc="each['dynamic_total_debit_' + num]"/>
+                                                                   t-out="each['dynamic_total_debit_' + num]"/>
                                                             </th>
                                                             <th style="text-align:center;">
                                                                 <t t-if="each['dynamic_total_credit_' + num]"
-                                                                   t-esc="each['dynamic_total_credit_' + num]"/>
+                                                                   t-out="each['dynamic_total_credit_' + num]"/>
                                                             </th>
                                                         </t>
                                                     </t>
                                                     <th style="text-align:center;">
                                                         <t t-if="each['total_debit']"
-                                                           t-esc="each['total_debit']"/>
+                                                           t-out="each['total_debit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="each['total_credit']"
-                                                           t-esc="each['total_credit']"/>
+                                                           t-out="each['total_credit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="each['end_total_debit']"
-                                                           t-esc="each['end_total_debit']"/>
+                                                           t-out="each['end_total_debit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="each['end_total_credit']"
-                                                           t-esc="each['end_total_credit']"/>
+                                                           t-out="each['end_total_credit']"/>
                                                     </th>
                                                 </tr>
                                             </t>
                                             <!-- Totals Row - Show for filtered data when data exists -->
-                                            <t t-if="state.data and state.data.length > 0">
+                                            <t t-if="this.state.data and this.state.data.length > 0">
                                                 <tr class="border-bottom"
                                                     style="border-spacing: 0 10px;color:#000;font-weight:bold;background-color:#f8f9fa;">
                                                     <th colspan="6">Total</th>
                                                     <!-- Initial Balance Totals -->
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'initial_total_debit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'initial_total_debit')"/>
                                                     </th>
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'initial_total_credit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'initial_total_credit')"/>
                                                     </th>
                                                     <!-- Dynamic Period Totals (when comparison is applied) -->
-                                                    <t t-if="state.apply_comparison == true">
+                                                    <t t-if="this.state.apply_comparison == true">
                                                         <t t-set="number_of_periods"
-                                                           t-value="comparison_number_range"/>
+                                                           t-value="this.comparison_number_range"/>
                                                         <t t-foreach="number_of_periods"
                                                            t-as="num" t-key="num">
                                                             <th style="text-align:center;">
-                                                                <t t-esc="sumByKey(state.data, 'dynamic_total_debit_' + num)"/>
+                                                                <t t-out="this.sumByKey(this.state.data, 'dynamic_total_debit_' + num)"/>
                                                             </th>
                                                             <th style="text-align:center;">
-                                                                <t t-esc="sumByKey(state.data, 'dynamic_total_credit_' + num)"/>
+                                                                <t t-out="this.sumByKey(this.state.data, 'dynamic_total_credit_' + num)"/>
                                                             </th>
                                                         </t>
                                                     </t>
                                                     <!-- Current Period Totals -->
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'total_debit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'total_debit')"/>
                                                     </th>
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'total_credit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'total_credit')"/>
                                                     </th>
                                                     <!-- End Balance Totals -->
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'end_total_debit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'end_total_debit')"/>
                                                     </th>
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'end_total_credit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'end_total_credit')"/>
                                                     </th>
                                                 </tr>
                                             </t>
                                         </t>
                                     </t>
                                     <t t-if="this.state.default_report == true">
-                                        <t t-if="state.data">
+                                        <t t-if="this.state.data">
                                             <t t-set="i" t-value="0"/>
-                                            <t t-foreach="state.accounts"
+                                            <t t-foreach="this.state.accounts"
                                                t-as="move_line"
                                                t-key="move_line_index">
                                                 <t t-set="i" t-value="i + 1"/>
@@ -443,12 +442,12 @@
                                                                data-bs-toggle="dropdown"
                                                                style="color: black;">
                                                                 <span>
-                                                                    <t t-esc="move_line['account']"/>
+                                                                    <t t-out="move_line['account']"/>
                                                                 </span>
                                                             </a>
                                                             <span class="dropdown-menu">
                                                                 <a role="menuitem"
-                                                                   t-on-click="show_gl"
+                                                                   t-on-click="this.show_gl"
                                                                    class="show_gl">
                                                                     General Ledger
                                                                 </a>
@@ -456,7 +455,7 @@
                                                                      class="dropdown-divider"/>
                                                                 <a role="menuitem"
                                                                    t-att-data-id="move_line['account_id']"
-                                                                   t-on-click="gotoJournalItem"
+                                                                   t-on-click="this.gotoJournalItem"
                                                                    class="show_gl">
                                                                     Journal Items
                                                                 </a>
@@ -465,84 +464,84 @@
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="move_line['initial_total_debit']"
-                                                           t-esc="move_line['initial_total_debit']"/>
+                                                           t-out="move_line['initial_total_debit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="move_line['initial_total_credit']"
-                                                           t-esc="move_line['initial_total_credit']"/>
+                                                           t-out="move_line['initial_total_credit']"/>
                                                     </th>
-                                                    <t t-if="state.apply_comparison == true">
+                                                    <t t-if="this.state.apply_comparison == true">
                                                         <t t-set="number_of_periods"
-                                                           t-value="comparison_number_range"/>
+                                                           t-value="this.comparison_number_range"/>
                                                         <t t-foreach="number_of_periods"
                                                            t-as="num" t-key="num">
                                                             <th style="text-align:center;">
                                                                 <t t-if="move_line['dynamic_total_debit_' + num]"
-                                                                   t-esc="move_line['dynamic_total_debit_' + num]"/>
+                                                                   t-out="move_line['dynamic_total_debit_' + num]"/>
                                                             </th>
                                                             <th style="text-align:center;">
                                                                 <t t-if="move_line['dynamic_total_credit_' + num]"
-                                                                   t-esc="move_line['dynamic_total_credit_' + num]"/>
+                                                                   t-out="move_line['dynamic_total_credit_' + num]"/>
                                                             </th>
                                                         </t>
                                                     </t>
                                                     <th style="text-align:center;">
                                                         <t t-if="move_line['total_debit']"
-                                                           t-esc="move_line['total_debit']"/>
+                                                           t-out="move_line['total_debit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="move_line['total_credit']"
-                                                           t-esc="move_line['total_credit']"/>
+                                                           t-out="move_line['total_credit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="move_line['end_total_debit']"
-                                                           t-esc="move_line['end_total_debit']"/>
+                                                           t-out="move_line['end_total_debit']"/>
                                                     </th>
                                                     <th style="text-align:center;">
                                                         <t t-if="move_line['end_total_credit']"
-                                                           t-esc="move_line['end_total_credit']"/>
+                                                           t-out="move_line['end_total_credit']"/>
                                                     </th>
                                                 </tr>
                                             </t>
                                             <!-- Totals Row - Show for all cases when data exists -->
-                                            <t t-if="state.data and state.data.length > 0">
+                                            <t t-if="this.state.data and this.state.data.length > 0">
                                                 <tr class="border-bottom"
                                                     style="border-spacing: 0 10px;color:#000;font-weight:bold;background-color:#f8f9fa;">
                                                     <th colspan="6">Total</th>
                                                     <!-- Initial Balance Totals -->
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'initial_total_debit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'initial_total_debit')"/>
                                                     </th>
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'initial_total_credit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'initial_total_credit')"/>
                                                     </th>
                                                     <!-- Dynamic Period Totals (when comparison is applied) -->
-                                                    <t t-if="state.apply_comparison == true">
+                                                    <t t-if="this.state.apply_comparison == true">
                                                         <t t-set="number_of_periods"
-                                                           t-value="comparison_number_range"/>
+                                                           t-value="this.comparison_number_range"/>
                                                         <t t-foreach="number_of_periods"
                                                            t-as="num" t-key="num">
                                                             <th style="text-align:center;">
-                                                                <t t-esc="sumByKey(state.data, 'dynamic_total_debit_' + num)"/>
+                                                                <t t-out="this.sumByKey(this.state.data, 'dynamic_total_debit_' + num)"/>
                                                             </th>
                                                             <th style="text-align:center;">
-                                                                <t t-esc="sumByKey(state.data, 'dynamic_total_credit_' + num)"/>
+                                                                <t t-out="this.sumByKey(this.state.data, 'dynamic_total_credit_' + num)"/>
                                                             </th>
                                                         </t>
                                                     </t>
                                                     <!-- Current Period Totals -->
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'total_debit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'total_debit')"/>
                                                     </th>
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'total_credit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'total_credit')"/>
                                                     </th>
                                                     <!-- End Balance Totals -->
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'end_total_debit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'end_total_debit')"/>
                                                     </th>
                                                     <th style="text-align:center;">
-                                                        <t t-esc="sumByKey(state.data, 'end_total_credit')"/>
+                                                        <t t-out="this.sumByKey(this.state.data, 'end_total_credit')"/>
                                                     </th>
                                                 </tr>
                                             </t>

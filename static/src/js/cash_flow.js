@@ -2,21 +2,23 @@
 const { Component } = owl;
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { useRef, useState } from "@odoo/owl";
+import { proxy, signal, useProps } from "@odoo/owl";
+import { standardActionServiceProps } from "@web/webclient/actions/action_plugin";
 import { BlockUI } from "@web/core/ui/block_ui";
 import { download } from "@web/core/network/download";
 const actionRegistry = registry.category("actions");
 
 class CashBook extends owl.Component {
+    props = useProps(standardActionServiceProps);
     async setup() {
         super.setup(...arguments);
         this.initial_render = true;
         this.orm = useService('orm');
         this.action = useService('action');
         this.dialog = useService("dialog");
-        this.tbody = useRef('tbody');
-        this.unfoldButton = useRef('unfoldButton');
-        this.state = useState({
+        this.tbody = signal.ref();
+        this.unfoldButton = signal.ref();
+        this.state = proxy({
             move_line: null,
             data: null,
             total: null,
@@ -308,8 +310,8 @@ class CashBook extends owl.Component {
         this.state.total = move_line_totals
         this.state.total_debit = totalDebitSum.toFixed(2)
         this.state.total_credit = totalCreditSum.toFixed(2)
-        if (this.unfoldButton.el.classList.contains("selected-filter")) {
-           this.unfoldButton.el.classList.remove("selected-filter");
+        if (this.unfoldButton().classList.contains("selected-filter")) {
+           this.unfoldButton().classList.remove("selected-filter");
         }
     }
     async unfoldAll(ev) {
@@ -320,13 +322,13 @@ class CashBook extends owl.Component {
          * @param {Event} ev - The event object triggered by the action.
          */
         if (!ev.target.classList.contains("selected-filter")) {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.add('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.add('show')
             }
             ev.target.classList.add("selected-filter");
         } else {
-            for (var length = 0; length < this.tbody.el.children.length; length++) {
-                this.tbody.el.children[length].classList.remove('show')
+            for (var length = 0; length < this.tbody().children.length; length++) {
+                this.tbody().children[length].classList.remove('show')
             }
             ev.target.classList.remove("selected-filter");
         }
