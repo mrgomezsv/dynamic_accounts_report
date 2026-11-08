@@ -32,7 +32,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'depends': ['base_accounting_kit'],
+    'depends': ['account', 'web'],
     'data': [
         'security/ir.access.csv',
         'views/accounting_report_views.xml',
