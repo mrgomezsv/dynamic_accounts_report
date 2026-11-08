@@ -73,7 +73,7 @@ class TrialBalance extends owl.Component {
             // Reset to default report state when loading initial data
             self.state.default_report = true;
             self.state.has_filters = false; // Reset filters flag
-            $.each(self.state.data, function (index, value) {
+            Object.values(self.state.data).forEach(function (value) {
                 self.state.journals = value.journal_ids
             })
         }
