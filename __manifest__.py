@@ -21,7 +21,7 @@
 ################################################################################
 {
     'name': 'Odoo18 Dynamic Accounting Reports',
-    'version': '18.0.1.3.4',
+    'version': '20.0.1.3.4',
     'category': 'Accounting',
     'summary': "Odoo 18 Accounting Financial Reports,Dynamic Accounting Reports, Dynamic Financial Reports,Dynamic Report Odoo18, Odoo18,Financial Reports, Odoo18 Accounting,Accounting, Odoo Apps",
     'description': "This module creates dynamic Accounting General Ledger, Trial"
@@ -34,7 +34,7 @@
     'website': "https://www.cybrosys.com",
     'depends': ['base_accounting_kit'],
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'views/accounting_report_views.xml',
         'report/trial_balance.xml',
         'report/general_ledger_templates.xml',
