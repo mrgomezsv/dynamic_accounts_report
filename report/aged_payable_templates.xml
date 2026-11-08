@@ -35,8 +35,7 @@
                                     </th>
                                     <th>
                                         <t t-foreach="filters['partner']"
-                                           t-as="selected_partner"
-                                           t-key="partner_index">
+                                           t-as="selected_partner">
                                             <t t-out="selected_partner['display_name']"/>
                                             ,
                                         </t>
@@ -50,8 +49,7 @@
                     <br/>
                     <t t-if="move_lines">
                         <t t-foreach="move_lines"
-                           t-as="move_line"
-                           t-key="partner_index">
+                           t-as="move_line">
                             <table class="table table-sm table-reports">
                                 <thead style="background:#808080;">
                                     <tr>
@@ -145,8 +143,7 @@
                                         </th>
                                     </tr>
                                     <t t-foreach="data[move_line]"
-                                       t-as="valuelist"
-                                       t-key="valuelist_index">
+                                       t-as="valuelist">
                                         <tr class="border-bottom"
                                             style="font-size:11px;font-weight:100;">
                                             <th colspan="6">

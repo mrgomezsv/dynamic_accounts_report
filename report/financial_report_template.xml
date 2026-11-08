@@ -45,8 +45,7 @@
                             <th colspan="6"/>
                             <t t-if="data['year']">
                                 <t t-foreach="data['year']"
-                                   t-as="periodData"
-                                   t-key="periodData_index">
+                                   t-as="periodData">
                                     <th class="text-end">
                                         <t t-out="periodData"/>
                                     </th>
@@ -57,8 +56,7 @@
                             <th colspan="6"/>
                             <t t-if="data['year']">
                                 <t t-foreach="data['year']"
-                                   t-as="periodData"
-                                   t-key="periodData_index">
+                                   t-as="periodData">
                                     <th class="text-end">Balance</th>
                                 </t>
                             </t>
@@ -71,8 +69,7 @@
                                     Net Profit
                                 </span>
                             </th>
-                            <t t-foreach="data['datas']" t-as="total"
-                               t-key="total_index">
+                            <t t-foreach="data['datas']" t-as="total">
                                 <th class="text-end">
                                     <span class="fw-bolder">
                                         <t t-if="total['total']"
@@ -99,8 +96,7 @@
                             <th colspan="6">
                                 <span class="ms-3">Operating Income</span>
                             </th>
-                            <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                            <t t-foreach="data['datas']" t-as="total">
                                 <th class="text-end">
                                     <span>
                                         <t t-out="total['income'][1]"/>
@@ -114,8 +110,7 @@
                                     Revenue
                                 </span>
                             </th>
-                            <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                            <t t-foreach="data['datas']" t-as="total">
                             <th class="text-end">
                                 <span>
                                     <t t-out="total['expense_direct_cost'][1]"/>
@@ -128,8 +123,7 @@
                                 <span class="ms-3">Other Income
                                 </span>
                             </th>
-                            <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                            <t t-foreach="data['datas']" t-as="total">
                             <th class="text-end">
                                 <span>
                                     <t t-out="total['income_other'][1]"/>
@@ -143,8 +137,7 @@
                                     Total Income
                                 </span>
                             </th>
-                            <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                            <t t-foreach="data['datas']" t-as="total">
                             <th class="text-end">
                                 <span class="fw-bolder">
                                     <t t-out="total['total_income']"/>
@@ -163,8 +156,7 @@
                                 <th colspan="6">
                                             <span class="ms-3">Expenses</span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                                <t t-foreach="data['datas']" t-as="total">
                                 <th class="text-end">
                                     <span>
                                         <t t-out="total['expense'][1]"/>
@@ -177,8 +169,7 @@
                                     <span class="ms-3">Depreciation
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                                <t t-foreach="data['datas']" t-as="total">
                                 <th class="text-end">
                                     <span>
                                         <t t-out="total['expense_depreciation'][1]"/>
@@ -191,8 +182,7 @@
                                     <span class="fw-bolder ms-2">Total Expenses
                                     </span>
                                 </th>
-                            <t t-foreach="data['datas']" t-as="total"
-                           t-key="total_index">
+                            <t t-foreach="data['datas']" t-as="total">
                                 <th class="text-end">
                                     <span class="fw-bolder">
                                         <t t-out="total['total_expense']"/>

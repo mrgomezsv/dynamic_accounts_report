@@ -40,8 +40,7 @@
                                     </th>
                                     <th>
                                         <t t-foreach="filters['partner']"
-                                           t-as="selected_partner"
-                                           t-key="partner_index">
+                                           t-as="selected_partner">
                                             <t t-out="selected_partner['display_name']"/>
                                             ,
                                         </t>
@@ -57,8 +56,7 @@
                                     <th>
                                         Posted,
                                         <t t-foreach="filters['options']"
-                                           t-as="selected_options"
-                                           t-key="options_index">
+                                           t-as="selected_options">
                                             <t t-out="selected_options"/>,
                                         </t>
                                     </th>
@@ -71,8 +69,7 @@
                     <br/>
                     <t t-if="move_lines">
                         <t t-foreach="move_lines"
-                           t-as="move_line"
-                           t-key="move_lines_index">
+                           t-as="move_line">
                             <table class="table table-sm table-reports">
                                 <thead style="background:#808080;">
                                     <tr>
@@ -144,8 +141,7 @@
                                         </th>
                                     </tr>
                                     <t t-foreach="data[move_line]"
-                                       t-as="valuelist"
-                                       t-key="valuelist_index">
+                                       t-as="valuelist">
                                         <tr class="border-bottom">
                                             <th colspan="6" style="width:10%">
                                                 <span>

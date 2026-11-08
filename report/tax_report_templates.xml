@@ -47,8 +47,7 @@
                                     </th>
                                     <th>
                                         <t t-foreach="filters['options']"
-                                           t-as="selected_options"
-                                           t-key="options_index">
+                                           t-as="selected_options">
                                             <t t-out="selected_options"/>,
                                         </t>
                                     </th>

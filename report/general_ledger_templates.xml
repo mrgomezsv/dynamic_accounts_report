@@ -78,7 +78,7 @@
                     <t t-if="account">
 <!--                        <t t-foreach="account_data.account_totals"-->
 <!--                           t-as="accounts"-->
-<!--                           t-key="accounts_index">-->
+<!-->-->
                             <table class="table table-sm table-reports">
                                 <thead style="background:#808080;">
                                     <tr>
@@ -94,8 +94,7 @@
                                 </thead>
                                 <tbody style="font-size:11px;font-weight:100;">
                                     <t t-foreach="account"
-                           t-as="account"
-                           t-key="accounts_index">
+                           t-as="account">
                                     <tr class="border-bottom"
                                         style="background:#D3D3D3;">
                                         <th colspan="6">
@@ -149,8 +148,7 @@
                                         </th>
                                     </tr>
                                     <t t-foreach="account_data[account]"
-                                       t-as="valuelist"
-                                       t-key="valuelist_index">
+                                       t-as="valuelist">
                                         <tr class="border-bottom">
                                             <th colspan="6" style="width:10%">
                                                 <span>

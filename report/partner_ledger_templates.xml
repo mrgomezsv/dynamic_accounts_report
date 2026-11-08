@@ -40,23 +40,20 @@
                                     </th>
                                     <th>
                                         <t t-foreach="filters['partner']"
-                                           t-as="selected_partner"
-                                           t-key="partner_index">
+                                           t-as="selected_partner">
                                             <t t-out="selected_partner['display_name']"/>
                                             ,
                                         </t>
                                     </th>
                                     <th>
                                         <t t-foreach="filters['account']"
-                                           t-as="selected_account"
-                                           t-key="account_index">
+                                           t-as="selected_account">
                                             <t t-out="selected_account"/>,
                                         </t>
                                     </th>
                                     <th>
                                         <t t-foreach="filters['options']"
-                                           t-as="selected_options"
-                                           t-key="options_index">
+                                           t-as="selected_options">
                                             <t t-out="selected_options"/>,
                                         </t>
                                     </th>
@@ -69,8 +66,7 @@
                     <br/>
                     <t t-if="partners">
                         <t t-foreach="partners"
-                           t-as="partner"
-                           t-key="partner_index">
+                           t-as="partner">
                             <table class="table table-sm table-reports">
                                 <thead style="background:#808080;">
                                     <tr>
@@ -145,8 +141,7 @@
                                     <!-- Iterate over partner's initial balance -->
                                     <t t-set="j" t-value="0"/>
                                     <t t-foreach="partners"
-                                       t-as="partner_initial"
-                                       t-key="partner_initial_index">
+                                       t-as="partner_initial">
                                         <t t-set="j" t-value="j + 1"/>
                                         <t t-if="j == 1 and total[partner]['initial_balance'] != 0">
                                             <th colspan="6">
@@ -187,8 +182,7 @@
                                     </t>
                                     <!-- Iterate over partner's value list -->
                                     <t t-foreach="data[partner]"
-                                       t-as="valuelist"
-                                       t-key="valuelist_index">
+                                       t-as="valuelist">
                                         <tr class="border-bottom">
                                             <th colspan="6" style="width:10%">
                                                 <span>

@@ -48,24 +48,21 @@
                                     </th>
                                     <th>
                                         <t t-foreach="filters['journal']"
-                                           t-as="selected_journal"
-                                           t-key="journal_index">
+                                           t-as="selected_journal">
                                             <t t-out="selected_journal"/>
                                             ,
                                         </t>
                                     </th>
                                     <th>
                                         <t t-foreach="filters['account']"
-                                           t-as="selected_account"
-                                           t-key="account_index">
+                                           t-as="selected_account">
                                             <t t-out="selected_account['display_name']"/>
                                             ,
                                         </t>
                                     </th>
                                     <th>
                                         <t t-foreach="filters['options']"
-                                           t-as="selected_options"
-                                           t-key="options_index">
+                                           t-as="selected_options">
                                             <t t-out="selected_options"/>,
                                         </t>
                                     </th>
@@ -82,8 +79,7 @@
                             <tr>
                                 <th colspan="6"/>
                                 <th colspan="2">Initial Balance</th>
-                                <t t-foreach="date_viewed" t-as="date_view"
-                                   t-key="date_view_index">
+                                <t t-foreach="date_viewed" t-as="date_view">
                                     <th colspan="2">
                                         <t t-out="date_view"/>
                                     </th>
@@ -102,7 +98,7 @@
                                     <t t-set="number_of_periods"
                                        t-value="comparison_number_range"/>
                                     <t t-foreach="number_of_periods"
-                                       t-as="number" t-key="number">
+                                       t-as="number">
                                         <th>Debit</th>
                                         <th>Credit</th>
                                     </t>
@@ -113,8 +109,7 @@
                             <t t-if="data">
                                 <t t-set="i" t-value="0"/>
                                 <t t-foreach="data"
-                                   t-as="move_line"
-                                   t-key="move_line_index">
+                                   t-as="move_line">
                                     <t t-set="i" t-value="i + 1"/>
                                     <tr class="border-bottom"
                                         style="border-spacing: 0 10px;">
@@ -133,7 +128,7 @@
                                             <t t-set="number_of_periods"
                                                t-value="comparison_number_range"/>
                                             <t t-foreach="number_of_periods"
-                                               t-as="num" t-key="num">
+                                               t-as="num">
                                                 <th style="text-align:center;">
                                                     <t t-if="move_line['dynamic_total_debit_' + str(num)]"
                                                        t-out="move_line['dynamic_total_debit_' + str(num)]"/>
@@ -177,7 +172,7 @@
                                             <t t-set="number_of_periods"
                                                t-value="comparison_number_range"/>
                                             <t t-foreach="number_of_periods"
-                                               t-as="nb" t-key="nb">
+                                               t-as="nb">
                                                 <th style="text-align:center;">
                                                     <t t-out="totals.get('dynamic_total_debit_' + nb, '0.00')"/>
                                                 </th>

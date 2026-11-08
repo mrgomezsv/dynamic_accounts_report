@@ -21,8 +21,7 @@
                                 <th colspan="6"/>
                                 <t t-if="data['year']">
                                     <t t-foreach="data['year']"
-                                       t-as="periodData"
-                                       t-key="periodData_index">
+                                       t-as="periodData">
                                         <th class="text-end">
                                             <t t-out="periodData"/>
                                         </th>
@@ -33,8 +32,7 @@
                                 <th colspan="6"/>
                                 <t t-if="data['year']">
                                     <t t-foreach="data['year']"
-                                       t-as="periodData"
-                                       t-key="periodData_index">
+                                       t-as="periodData">
                                         <th class="text-end">Balance</th>
                                     </t>
                                 </t>
@@ -64,8 +62,7 @@
                                         Accounts
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -75,7 +72,7 @@
                                 </t>
                             </tr>
                             <t t-foreach="data['datas'][0]['asset_cash'][0]"
-                               t-as="datas" t-key="datas_index">
+                               t-as="datas">
                                 <t t-if="datas['amount'] != '0.00'">
                                     <tr style="border-bottom: 1px solid gainsboro;">
                                         <th colspan="6"
@@ -86,10 +83,9 @@
                                         </th>
                                         <!-- Assuming you want to iterate over all values to display -->
                                         <t t-foreach="data['datas']"
-                                           t-as="values" t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['asset_cash'][0]"
-                                               t-as="account"
-                                               t-key="account_index">
+                                               t-as="account">
                                                 <t t-if="account['name'] == datas['name']">
                                                     <th class="text-end"
                                                         style="font-weight: normal;">
@@ -108,8 +104,7 @@
                                     <span style="margin-left: 6%;">Receivables
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -118,19 +113,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['asset_receivable'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['asset_receivable'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -142,11 +135,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['asset_receivable'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -174,8 +165,7 @@
                                         Assets
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -184,19 +174,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['asset_current'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['asset_current'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -208,11 +196,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['asset_current'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -239,8 +225,7 @@
                                     <span style="margin-left: 6%;">Prepayments
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -249,19 +234,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['asset_prepayments'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['asset_prepayments'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -273,11 +256,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['asset_prepayments'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -305,8 +286,7 @@
                                         Total Current Assets
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_current_asset']"/>
@@ -320,8 +300,7 @@
                                         Assets
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -330,19 +309,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['asset_fixed'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['asset_fixed'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -354,11 +331,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['asset_fixed'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -386,8 +361,7 @@
                                         Non-current Assets
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -396,19 +370,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['asset_non_current'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['asset_non_current'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -420,11 +392,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['asset_non_current'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -452,8 +422,7 @@
                                         Total Assets
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_assets']"/>
@@ -483,8 +452,7 @@
                                         Liabilities
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -493,19 +461,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['liability_current'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['liability_current'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -517,11 +483,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['liability_current'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -548,8 +512,7 @@
                                     <span style="margin-left: 6%;">Payables
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -558,19 +521,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['liability_payable'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['liability_payable'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -582,11 +543,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['liability_payable'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -614,8 +573,7 @@
                                         Total Current Liabilities
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_current_liability']"/>
@@ -629,8 +587,7 @@
                                         Non-current Liabilities
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -639,19 +596,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['liability_non_current'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['liability_non_current'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -663,11 +618,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['liability_non_current'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -695,8 +648,7 @@
                                         Total LIABILITIES
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_liability']"/>
@@ -726,8 +678,7 @@
                                         Earnings
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -742,8 +693,7 @@
                                         Allocated Earnings
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -752,19 +702,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['equity_unaffected'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['equity_unaffected'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -776,11 +724,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['equity_unaffected'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -808,8 +754,7 @@
                                         Total Unallocated Earnings
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_unallocated_earning']"/>
@@ -823,8 +768,7 @@
                                         Earnings
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end"
                                         style="font-weight: normal;">
                                         <span>
@@ -833,19 +777,17 @@
                                     </th>
                                 </t>
                             </tr>
-                            <t t-foreach="data['datas']" t-as="value"
-                               t-key="value_index">
+                            <t t-foreach="data['datas']" t-as="value">
                                 <t t-if="value_index == 0">
                                     <t t-foreach="value['equity'][0]"
-                                       t-as="datas" t-key="datas_index">
+                                       t-as="datas">
                                         <t t-set="account_name"
                                            t-value="datas['name']"/>
                                         <t t-set="account_value" t-value="0"/>
                                         <t t-foreach="data['datas']"
-                                           t-as="values"
-                                           t-key="values_index">
+                                           t-as="values">
                                             <t t-foreach="values['equity'][0]"
-                                               t-as="datas" t-key="datas_index">
+                                               t-as="datas">
                                                 <t t-if="account_name == datas['name']">
                                                     <t t-if="datas['amount'] != '0.00'">
                                                         <t t-set="account_value"
@@ -857,11 +799,9 @@
                                         <t t-if="account_value == 1">
                                             <tr style="border-bottom: 1px solid gainsboro;">
                                                 <t t-foreach="data['datas']"
-                                                   t-as="values"
-                                                   t-key="values_index">
+                                                   t-as="values">
                                                     <t t-foreach="values['equity'][0]"
-                                                       t-as="datas"
-                                                       t-key="datas_index">
+                                                       t-as="datas">
                                                         <t t-if="account_name == datas['name']">
                                                             <th colspan="6"
                                                                 style="font-weight: normal;">
@@ -889,8 +829,7 @@
                                         Total EQUITY
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_equity']"/>
@@ -904,8 +843,7 @@
                                         LIABILITIES + EQUITY
                                     </span>
                                 </th>
-                                <t t-foreach="data['datas']" t-as="datas"
-                                   t-key="datas_index">
+                                <t t-foreach="data['datas']" t-as="datas">
                                     <th class="text-end">
                                         <span style="font-weight: bolder; margin-left: 4%;">
                                             <t t-out="datas['total_balance']"/>
